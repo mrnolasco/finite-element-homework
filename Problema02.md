@@ -269,6 +269,7 @@ que se construye para cada par de elementos consecutivos del vector `x`.
 n = 4
 x = range(0, stop=1, length=n+1)
 A = ensamble_A(x, n)
+```
 """
 function ensamble_A(x, n)    
     A_global = zeros(n+1,n+1) # Inicializar matriz A_global con ceros
@@ -345,6 +346,7 @@ de elementos finitos con funciones de forma lineales.
 n = 4
 x = range(0, stop=1, length=n+1)
 b = ensamble_b(x, n)
+```
 """
 function ensamble_b(x, n)
     b_global = zeros(n+1,1) # Vector b de tamaño n+1
@@ -467,7 +469,7 @@ plot!(u_exact, label = "Solución Exacta")
 
 
     
-![svg](output_24_0.svg)
+![svg](output.svg)
     
 
 
