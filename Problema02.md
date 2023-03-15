@@ -20,6 +20,8 @@ donde $f(x)=-2e^x+2(1-x)e^x+(1-x)^2e^x$. Observar que $u(x)=(1-x)^2e^x$ es la so
 
 Dada la partición del intervalo $[a,b]$ en $n$ intervalos: 
 
+$$a= x_1 < x_2 < x_3 < \ldots < x_n < x_{n+1}=b$$
+
 $$a = x_1 < x_2 <x_3 <\ldots < x_n < x_{n+1}=b$$
 
 Definimos: 
