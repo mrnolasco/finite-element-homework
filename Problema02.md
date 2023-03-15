@@ -14,7 +14,10 @@ $$-u''(x)+u'(x)+u(x) = f(x),\qquad x\in D := [0,1],$$
 
 con las condiciones de frontera $u(0) =1\ , \  u'(1) =0$.
 
-donde $f(x)=-2e^x+2(1-x)e^x+(1-x)^2e^x$. Observar que $u(x)=(1-x)^2e^x$ es la solución del problema. Obtener entonces la tasa de convergencia para el error $e:=u_h-u$ en las normas $L_2(D)$ y $H_1(D)$ para $N=10, 20, 40, 80, 160$ donde $N$ es el número de subintervalos que dividen a $D$.
+donde $f(x)=-2e^x+2(1-x)e^x+(1-x)^2e^x$. 
+
+* Observar que $u(x)=(1-x)^2e^x$ es la solución del problema.
+* Obtener entonces la tasa de convergencia para el error $e:=u_h-u$ en las normas $L_2(D)$ y $H_1(D)$ para $N=10, 20, 40, 80, 160$ donde $N$ es el número de subintervalos que dividen a $D$.
 
 ## Solución
 
@@ -109,7 +112,7 @@ using LinearAlgebra
 
 ```julia
 function u_exact(x)
-    return exp(x)*(1-x)^2
+    return exp(x)*(1 - x)^2
 end
 ```
 
@@ -156,15 +159,16 @@ la fórmula de cuadratura de Gauss-Legendre con tres nodos.
 
 - `val`: Aproximación del valor de la integral de `f` en el intervalo `[a,b]`.
 
+
 """
 function cuadratura_gauss(f,a,b)
         # Nodos de la cuadratura
-        x₁ = -0.5* (b-a) *sqrt(3/5)+0.5*(a+b)  # Nodo x₁
-        x₂ = 0.5*(a+b)                         # Nodo x₂
-        x₃ = 0.5*(b-a)*sqrt(3/5)+0.5*(a+b)     # Nodo x₃
+        x₁ = -0.5*(b-a)*sqrt(3/5) + 0.5*(a+b)  # Nodo x₁
+        x₂ = 0.5*(a + b)                         # Nodo x₂
+        x₃ = 0.5*(b-a)*sqrt(3/5) + 0.5*(a+b)     # Nodo x₃
     
         # Cálculo de integral utilizando la fórmula de cuadratura de Gauss-Legendre
-        val = 5*f(x₁)+8*f(x₂)+5*f(x₃)         # Suma ponderada de f en los nodos
+        val = 5*f(x₁) + 8*f(x₂) + 5*f(x₃)         # Suma ponderada de f en los nodos
         val = 0.5*(b-a)*val/9              # Multiplicación por el factor de escala
     
     return val  # Retorna el valor aproximado de la integral de f en [a,b]
@@ -190,14 +194,14 @@ y en la seminorma H1 en un elemento de la malla.
 
 ### Input:
 
-- nodes: vector con los nodos de la malla
-- dofs: vector con los grados de libertad de la solución
-- i: índice del elemento en la malla
+- `nodes`: vector con los nodos de la malla
+- `dofs`: vector con los grados de libertad de la solución
+- `i`: índice del elemento en la malla
 
 ### Output:
 
-- val_L2: valor del error L2 en el elemento
-- val_H1: valor del error H1 en el elemento
+- `val_L2`: valor del error L2 en el elemento
+- `val_H1`: valor del error H1 en el elemento
 """
 function error_elemento(nodes, dofs, i)    
     # Obtención de las coordenadas de los nodos y los grados de libertad
@@ -211,18 +215,18 @@ function error_elemento(nodes, dofs, i)
     hatᵢ₊₁ = x -> uᵢ₊₁*(x - xᵢ)/(xᵢ₊₁ - xᵢ)  
     
     # Definición de función anónima de error en L2
-    L = x -> (u_exact(x)-hatᵢ(x)-hatᵢ₊₁(x))^2
+    L = x -> (u_exact(x) - hatᵢ(x) - hatᵢ₊₁(x))^2
     
     # Definición de las derivadas de las funciones hat
     dhatᵢ = x-> -uᵢ/(xᵢ₊₁ - xᵢ)
     dhatᵢ₊₁ = x-> uᵢ₊₁/(xᵢ₊₁ - xᵢ)
     
     # Definición de función anónima de error en H1
-    H = x -> (du_exact(x)-dhatᵢ(x)-dhatᵢ₊₁(x))^2
+    H = x -> (du_exact(x) - dhatᵢ(x) - dhatᵢ₊₁(x))^2
         
     # Cuadratura de Gauss para aproximar la integral
-        val_L2 = cuadratura_gauss(L,xᵢ,xᵢ₊₁)
-        val_H1 = cuadratura_gauss(H,xᵢ,xᵢ₊₁)
+        val_L2 = cuadratura_gauss(L, xᵢ, xᵢ₊₁)
+        val_H1 = cuadratura_gauss(H, xᵢ, xᵢ₊₁)
     
     return val_L2, val_H1
 end
@@ -257,9 +261,10 @@ que se construye para cada par de elementos consecutivos del vector `x`.
 
 - `A_global`: Matriz `A` del sistema de ecuaciones lineales `Au=b`.
 
+
 """
 function ensamble_A(x, n)    
-    A_global = zeros(n+1,n+1) # Inicializar matriz A_global con ceros
+    A_global = zeros(n+1, n+1) # Inicializar matriz A_global con ceros
     A_local = zeros(2,2) # Inicializar matriz A_local con ceros 
 
     for i in 1:n
@@ -273,10 +278,10 @@ function ensamble_A(x, n)
         dφ⁺ᵢ₊₁ = x -> 1/(xᵢ₊₁ - xᵢ)
         
         # Funciones a integrar para calcular las entradas de A_local
-        I_1 = x-> dφ⁻ᵢ(x)*dφ⁻ᵢ(x)+dφ⁻ᵢ(x)*φ⁻ᵢ(x)+ φ⁻ᵢ(x)*φ⁻ᵢ(x)
-        I_2 = x-> dφ⁻ᵢ(x)*dφ⁺ᵢ₊₁(x)+dφ⁻ᵢ(x)*φ⁺ᵢ₊₁(x)+ φ⁻ᵢ(x)*φ⁺ᵢ₊₁(x)
-        I_3 = x-> dφ⁺ᵢ₊₁(x)*dφ⁻ᵢ(x)+dφ⁺ᵢ₊₁(x)*φ⁻ᵢ(x)+ φ⁺ᵢ₊₁(x)*φ⁻ᵢ(x)
-        I_4 = x-> dφ⁺ᵢ₊₁(x)*dφ⁺ᵢ₊₁(x)+dφ⁺ᵢ₊₁(x)*φ⁺ᵢ₊₁(x)+ φ⁺ᵢ₊₁(x)*φ⁺ᵢ₊₁(x)
+        I_1 = x-> dφ⁻ᵢ(x)*dφ⁻ᵢ(x) + dφ⁻ᵢ(x)*φ⁻ᵢ(x) + φ⁻ᵢ(x)*φ⁻ᵢ(x)
+        I_2 = x-> dφ⁻ᵢ(x)*dφ⁺ᵢ₊₁(x) + dφ⁻ᵢ(x)*φ⁺ᵢ₊₁(x) + φ⁻ᵢ(x)*φ⁺ᵢ₊₁(x)
+        I_3 = x-> dφ⁺ᵢ₊₁(x)*dφ⁻ᵢ(x) + dφ⁺ᵢ₊₁(x)*φ⁻ᵢ(x) + φ⁺ᵢ₊₁(x)*φ⁻ᵢ(x)
+        I_4 = x-> dφ⁺ᵢ₊₁(x)*dφ⁺ᵢ₊₁(x) + dφ⁺ᵢ₊₁(x)*φ⁺ᵢ₊₁(x) + φ⁺ᵢ₊₁(x)*φ⁺ᵢ₊₁(x)
         
         # Integración numérica para calcular las entradas de A_local
         A_local[1,1] = cuadratura_gauss(I_1, xᵢ, xᵢ₊₁)
@@ -286,15 +291,15 @@ function ensamble_A(x, n)
 
 
         # Actualización de las entradas correspondientes de A_global
-        A_global[i,i] = A_global[i,i]+A_local[1,1]
-        A_global[i+1,i+1] = A_global[i+1,i+1]+A_local[2,2]
+        A_global[i,i] = A_global[i,i] + A_local[1,1]
+        A_global[i+1,i+1] = A_global[i+1,i+1] + A_local[2,2]
 
-        A_global[i,i+1] = A_global[i,i+1]+A_local[2,1]
-        A_global[i+1,i] = A_global[i+1,i]+A_local[1,2]      
+        A_global[i,i+1] = A_global[i,i+1] + A_local[2,1]
+        A_global[i+1,i] = A_global[i+1,i] + A_local[1,2]      
     end
     # Imponer condición de frontera u(0)=1
-    A_global[1,1]=1
-    A_global[1,2]=0
+    A_global[1,1] = 1
+    A_global[1,2] = 0
     
     return A_global
 end
@@ -328,21 +333,22 @@ de elementos finitos con funciones de forma lineales.
 
 - `b_global`: Vector `b` del sistema de ecuaciones lineales `Au = b`.
 
+
 """
 function ensamble_b(x, n)
-    b_global = zeros(n+1,1) # Vector b de tamaño n+1
-    b_local = zeros(2,1) # Vector b_local de tamaño 2
+    b_global = zeros(n+1, 1) # Vector b de tamaño n+1
+    b_local = zeros(2, 1) # Vector b_local de tamaño 2
 
     for i in 1:n
         xᵢ = x[i]           # Coordenada x del nodo i
         xᵢ₊₁ = x[i+1]       # Coordenada x del nodo i+1
 
         # Funciones de forma φ⁻ᵢ y φ⁺ᵢ₊₁
-        φᵢ⁻ = x -> 1-(x-xᵢ)/(xᵢ₊₁-xᵢ)
+        φᵢ⁻ = x -> 1 - (x-xᵢ)/(xᵢ₊₁-xᵢ)
         φᵢ₊₁⁺ = x -> (x-xᵢ)/(xᵢ₊₁-xᵢ)
         
         # Función f(x), lado derecho de la ODE
-        f = x-> -2*exp(x)+2*(1-x)*exp(x)+exp(x)*(1-x)^2
+        f = x-> -2*exp(x) + 2*(1 - x)*exp(x) + exp(x)*(1 - x)^2
 
         # Integración numérica para calcular las entradas de b_local
         fφᵢ = x-> f(x)*φᵢ⁻(x)
@@ -352,12 +358,12 @@ function ensamble_b(x, n)
         b_local[2] = cuadratura_gauss(fφᵢ₊₁, xᵢ, xᵢ₊₁)
 
         # Actualización de las entradas correspondientes de b_global
-        b_global[i] = b_global[i]+b_local[1]
-        b_global[i+1] = b_global[i+1]+b_local[2]
+        b_global[i] = b_global[i] + b_local[1]
+        b_global[i+1] = b_global[i+1] + b_local[2]
     end
 
     # Imponer condición de frontera u(0)=1
-    b_global[1]=1
+    b_global[1] = 1
 
     return b_global  # Retorna el vector b del sistema de ecuaciones lineales
 end
@@ -392,15 +398,15 @@ La función `solve_u` resuelve el problema dado utilizando el método de element
 - `u_h`: vector con la solución aproximada
 
 """
-function solve_u(n, part=1)
+function solve_u(n, part = 1)
     # Definición de la malla x en función del valor del argumento part.
     if part == 1
         # Se crea un vector de n+1 puntos equidistantes en el intervalo [0,1]
-        x = LinRange(0,1,n+1)
-    else
-        x = zeros(n+1,1)
+        x = LinRange(0, 1, n+1)
+    elseif part == 2
+        x = zeros(n+1, 1)
         # Se crea un vector de n-1 puntos aleatorios en el intervalo (0,1)
-        x_in= sort!(collect(rand(n-1,1)),dims = 1)
+        x_in= sort!(collect(rand(n-1,1)), dims = 1)
         # Se agregan los puntos extremos 0 y 1 al principio y al final del vector x.
         x[1] = 0
         x[2:n] = x_in
@@ -442,7 +448,7 @@ x, u_h = solve_u(n,2);
 
 
 ```julia
-scatter(x,u_h, label = "Solución Aproximada")
+scatter(x, u_h, label = "Solución Aproximada")
 plot!(u_exact, label = "Solución Exacta")
 ```
 
@@ -450,18 +456,19 @@ plot!(u_exact, label = "Solución Exacta")
 
 
     
-![svg](output.svg)
+![svg](output_24_0.svg)
     
 
 
 
-### Cálculo de errores de aproximación en norma L2 y H1 `errores`
+### Cálculo de errores de aproximación en norma L2 y H1 `refina`
 
 
 ```julia
 """
-Función que calcula los errores de aproximación y tasas de convergencia en norma L2 y H1,
-para un problema de valor de frontera mediante el método de elementos finitos.
+Función que calcula los errores de aproximación en norma L2 y H1,
+y las tasas de convergencia en ambas normas, para un determinado
+números de ciclos de refinamiento. 
 
 Input:
 - `nI_approx_init`: número inicial de subintervalos en el mallado.
@@ -473,7 +480,7 @@ Output:
 - `H1_error_vec`: vector con error en H1 para cada ciclo de refinamiento.
 - `err_rate_H1`: vector con tasa de convergencia en H1 para cada ciclo de refinamiento.
 """
-function errores(nI_approx_init, n_cicles)
+function refina(nI_approx_init, n_cicles)
     # Construimos un vector que contiene el número total de puntos en el mallado.
     # Para cada ciclo de refinamiento el siguiente contiene el doble de puntos que el anterior
     # El primer ciclo no se refina
@@ -491,10 +498,10 @@ function errores(nI_approx_init, n_cicles)
         nI_approx = nI_approx_vec[k]
 
         # Nodos de la malla, vector fila
-        nodes = LinRange(0, 1, nI_approx+1)
-
-        # Valores exactos de la función u en los nodos de la malla
-        dofs = u_exact.(nodes)
+        # Valores aproximados de la función u en los nodos de la malla
+        nodes, dofs = solve_u(nI_approx)
+        
+        # Incialización del error en L2 y H1
         error_L2 = 0.0
         error_H1 = 0.0
 
@@ -528,7 +535,7 @@ end
 
 
 
-    errores
+    refina
 
 
 
@@ -540,10 +547,10 @@ using Printf
 function tabla(nI, L2, r_L2, H1, r_H1)
     # Impresión de la tabla de resultados
     println("     n   L2_error   L2_err_rate   H1_error  H1_err_rate\n")
-        s=@sprintf "| %4d | %1.3e | %1.3e | %1.3e | %1.3e |" nI[1] L2[1] r_L2[1] H1[1] r_H1[1];
+        s = @sprintf "| %4d | %1.3e | %1.3e | %1.3e | %1.3e |" nI[1] L2[1] r_L2[1] H1[1] r_H1[1];
         println(s)
     for i = 2:n_cicles
-        s=@sprintf "| %4d | %1.3e | %1.3e | %1.3e | %1.3e |" nI[i] L2[i] r_L2[i] H1[i] r_H1[i];
+        s = @sprintf "| %4d | %1.3e | %1.3e | %1.3e | %1.3e |" nI[i] L2[i] r_L2[i] H1[i] r_H1[i];
         println(s)
     end
 end
@@ -561,33 +568,31 @@ end
 # Numero inicial de subintervalos en el mallado
 nI_approx_init = 10
 # Número de ciclos que corre el algoritmo numérico
-n_cicles = 10
+n_cicles = 8
 ```
 
 
 
 
-    10
+    8
 
 
 
 
 ```julia
-nI, L2, r_L2, H1, r_H1 = errores(nI_approx_init, n_cicles);  
+nI, L2, r_L2, H1, r_H1 = refina(nI_approx_init, n_cicles);  
 
 tabla(nI, L2, r_L2, H1, r_H1)
 ```
 
          n   L2_error   L2_err_rate   H1_error  H1_err_rate
     
-    |   10 | 1.878e-03 | 1.000e+00 | 5.946e-02 | 1.000e+00 |
-    |   20 | 4.720e-04 | 1.992e+00 | 2.986e-02 | 9.937e-01 |
-    |   40 | 1.181e-04 | 1.998e+00 | 1.495e-02 | 9.984e-01 |
-    |   80 | 2.955e-05 | 2.000e+00 | 7.475e-03 | 9.996e-01 |
-    |  160 | 7.387e-06 | 2.000e+00 | 3.738e-03 | 9.999e-01 |
-    |  320 | 1.847e-06 | 2.000e+00 | 1.869e-03 | 1.000e+00 |
-    |  640 | 4.617e-07 | 2.000e+00 | 9.344e-04 | 1.000e+00 |
-    | 1280 | 1.154e-07 | 2.000e+00 | 4.672e-04 | 1.000e+00 |
-    | 2560 | 2.886e-08 | 2.000e+00 | 2.336e-04 | 1.000e+00 |
-    | 5120 | 7.214e-09 | 2.000e+00 | 1.168e-04 | 1.000e+00 |
+    |   10 | 1.685e-03 | 1.000e+00 | 5.948e-02 | 1.000e+00 |
+    |   20 | 4.232e-04 | 1.994e+00 | 2.986e-02 | 9.941e-01 |
+    |   40 | 1.059e-04 | 1.998e+00 | 1.495e-02 | 9.985e-01 |
+    |   80 | 2.649e-05 | 2.000e+00 | 7.475e-03 | 9.996e-01 |
+    |  160 | 6.623e-06 | 2.000e+00 | 3.738e-03 | 9.999e-01 |
+    |  320 | 1.656e-06 | 2.000e+00 | 1.869e-03 | 1.000e+00 |
+    |  640 | 4.139e-07 | 2.000e+00 | 9.344e-04 | 1.000e+00 |
+    | 1280 | 1.035e-07 | 2.000e+00 | 4.672e-04 | 1.000e+00 |
     
