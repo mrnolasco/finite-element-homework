@@ -18,11 +18,9 @@ donde $f(x)=-2e^x+2(1-x)e^x+(1-x)^2e^x$. Observar que $u(x)=(1-x)^2e^x$ es la so
 
 ## Solución
 
-Dada la partición del intervalo $[a,b]$ en $n$ intervalos:
-$$a =x_1 < x_2 <x_3 <\ldots < x_n <x_{n+1}=b$$
+Dada la partición del intervalo $[a,b]$ en $n$ intervalos: $$ a = x_1 < x_2 <x_3 <\ldots < x_n < x_{n+1}=b $$
 
-Definimos: 
-$$ h_i = x_{i+1}-x_i \quad I_i : = x\in [x_i, x_{i+1} ] $$
+Definimos: $$ h_i = x_{i+1}-x_i \quad I_i : = x\in [x_i, x_{i+1} ] $$
 
 Tomamos los elementos finitos de Lagrange: $\left\lbrace \phi_1, \phi_2, \ldots, \phi_{n+1}  \right\rbrace $
 
