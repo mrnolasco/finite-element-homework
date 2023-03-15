@@ -29,12 +29,12 @@ $$h_i = x_{i+1}-x_i \quad I_i : = x\in [x_i, x_{i+1} ]$$
 Tomamos los elementos finitos de Lagrange: 
 $$\left\lbrace \phi_1, \phi_2, \ldots, \phi_{n+1}  \right\rbrace $$
 
-con 
+donde 
 
 $$ \phi_i(x) := \begin{cases}  \frac{x-x_{i-1}}{h_{i-1}}  & x\in [x_{i-1},x_i]= I_{i-1} \\ 
 1-\frac{x-x_{i}}{h_{i}}  & x\in [x_{i},x_{i+1}]= I_{i}\\ 0 & \text{ otro caso}\end{cases} $$
 
-Y tiene derivada:
+con derivada:
 
 $$\phi_i(x)' := \begin{cases}  \frac{1}{h_{i-1}}  & x\in I_{i-1} \\
 -\frac{1}{h_{i}}  & x\in I_{i}\\ 0 & \text{ otro caso}\end{cases} $$
@@ -49,7 +49,9 @@ Ahora si tomamos $u$ y $v$ tales que: $$u = \sum_{i=1}^{n+1} u_i \phi_i\quad v =
 
 $a(u,v)-(f,v)=0$ se convierte en:
 $$\sum_{i=1}^{n+1} v_i \left [ \sum_{j=1}^{n+1}\int_{D} \left( \phi_i'\phi_j'+\phi_i'\phi_j+\phi_i\phi_j\right)u_j - \int_{D}f\phi_i  \right] =0$$
-donde $$ \sum_{j=1}^{n+1}\int_{D} \left( \phi_i'\phi_j'+\phi_i'\phi_j+\phi_i\phi_j\right)u_j = \int_{D}f\phi_i \quad i=1,2,\ldots n+1 $$ es un sistema de $n+1$ ecuaciones.
+donde 
+$$ \sum_{j=1}^{n+1}\int_{D} \left( \phi_i'\phi_j'+\phi_i'\phi_j+\phi_i\phi_j\right)u_j = \int_{D}f\phi_i \quad i=1,2,\ldots n+1 $$ 
+es un sistema de $n+1$ ecuaciones.
 
 En forma matricial: $$Au=b$$
 
@@ -59,16 +61,19 @@ Ya que los soportes de $\phi_i$ y $\phi_{i+2}$ se intersectan solo en el punto $
 
 
 Para $j=i$, tenemos que 
+
 $$A_{ii}=\int_{D} \phi_i'\phi_i' 
 = \int_{x_{i-1}}^{x_{i+1}} \left( \phi_i'\phi_i'+\phi_i'\phi_i+\phi_i\phi_i\right)
 =\int_{x_{i-1}}^{x_{i}} \left( \phi_i'\phi_i'+\phi_i'\phi_i+\phi_i\phi_i\right)+\int_{x_{i}}^{x_{i+1}} \left( \phi_i'\phi_i'+\phi_i'\phi_i+\phi_i\phi_i\right)
 $$
 
 Para $j=i\pm 1$, tenemos que 
+
 $$A_{i,i+1}=\int_{D}  \phi_i'\phi_{i+1}'+\phi_i'\phi_{i+1}+\phi_i\phi_{i+1} = \int_{x_{i}}^{x_{i+1}}  \phi_i'\phi_{i+1}'+\phi_i'\phi_{i+1}+\phi_i\phi_{i+1}$$
 $$A_{i,i-1}=\int_{D}  \phi_i'\phi_{i-1}'+\phi_i'\phi_{i-1}+\phi_i\phi_{i-1} = \int_{x_{i-1}}^{x_{i}}  \phi_i'\phi_{i-1}'+\phi_i'\phi_{i-1}+\phi_i\phi_{i-1}$$
 
 Entonces en el intervalo $[x_i, x_{i+1}]$ se actualizan los siguientes coeficientes de la matriz $A$:
+
 $$A_{ii}\leftarrow \int_{x_{i}}^{x_{i+1}} \left( \left( \phi_i^{-}\right)'\left( \phi_i^{-}\right)'+\left( \phi_i^{-}\right)'\left( \phi_i^{-}\right)+\left( \phi_i^{-}\right)\left( \phi_i^{-}\right)\right)=  a\left( \phi_i^{-},\phi_i^{-} \right) $$
 $$A_{i+1,i+1}\leftarrow \int_{x_{i}}^{x_{i+1}} \left( \left( \phi_{i+1}^{+}\right)'\left( \phi_{i+1}^{+}\right)'+\left( \phi_{i+1}^{+}\right)'\left( \phi_{i+1}^{+}\right)+\left( \phi_{i+1}^{+}\right)\left( \phi_{i+1}^{+}\right)\right)=a\left(\phi_{i+1}^{+},\phi_{i+1}^{+} \right) $$
 
