@@ -48,9 +48,13 @@ Ahora si tomamos $u$ y $v$ tales que: $$u = \sum_{i=1}^{n+1} u_i \phi_i\quad v =
 
 
 $a(u,v)-(f,v)=0$ se convierte en:
+
 $$\sum_{i=1}^{n+1} v_i \left [ \sum_{j=1}^{n+1}\int_{D} \left( \phi_i'\phi_j'+\phi_i'\phi_j+\phi_i\phi_j\right)u_j - \int_{D}f\phi_i  \right] =0$$
+
 donde 
+
 $$ \sum_{j=1}^{n+1}\int_{D} \left( \phi_i'\phi_j'+\phi_i'\phi_j+\phi_i\phi_j\right)u_j = \int_{D}f\phi_i \quad i=1,2,\ldots n+1 $$ 
+
 es un sistema de $n+1$ ecuaciones.
 
 En forma matricial: $$Au=b$$
@@ -82,7 +86,9 @@ $$A_{i,i+1}\leftarrow \int_{x_{i}}^{x_{i+1}}  \left( \phi_{i}^{-}\right)'\left( 
 $$A_{i+1,i}\leftarrow \int_{x_{i}}^{x_{i+1}} \left( \phi_{i+1}^{+}\right)'\left( \phi_{i}^{-}\right)'+\left( \phi_{i+1}^{+}\right)'\left( \phi_{i}^{-}\right)+\left( \phi_{i+1}^{+}\right)\left( \phi_{i}^{-}\right) = a \left( \phi_{i+1}^{+}, \phi_{i}^{-}\right) $$
 
 Y para el vector $b$ tenemos:
+
 $$ b_i \leftarrow \int_{x_{i}}^{x_{i+1}} f \phi_{i}^{-} $$
+
 $$ b_{i+1} \leftarrow \int_{x_{i}}^{x_{i+1}} f  \phi_{i+1}^{+} $$
 
 
