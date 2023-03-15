@@ -156,13 +156,6 @@ la fórmula de cuadratura de Gauss-Legendre con tres nodos.
 
 - `val`: Aproximación del valor de la integral de `f` en el intervalo `[a,b]`.
 
-### Ejemplo:
-
-```julia
-f(x) = exp(x)
-a, b = 0, 1
-approx = cuadratura_gauss(f, a, b)
-```
 """
 function cuadratura_gauss(f,a,b)
         # Nodos de la cuadratura
@@ -264,12 +257,6 @@ que se construye para cada par de elementos consecutivos del vector `x`.
 
 - `A_global`: Matriz `A` del sistema de ecuaciones lineales `Au=b`.
 
-### Ejemplo:
-```julia
-n = 4
-x = range(0, stop=1, length=n+1)
-A = ensamble_A(x, n)
-```
 """
 function ensamble_A(x, n)    
     A_global = zeros(n+1,n+1) # Inicializar matriz A_global con ceros
@@ -341,12 +328,6 @@ de elementos finitos con funciones de forma lineales.
 
 - `b_global`: Vector `b` del sistema de ecuaciones lineales `Au = b`.
 
-### Ejemplo:
-```julia
-n = 4
-x = range(0, stop=1, length=n+1)
-b = ensamble_b(x, n)
-```
 """
 function ensamble_b(x, n)
     b_global = zeros(n+1,1) # Vector b de tamaño n+1
