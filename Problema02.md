@@ -39,13 +39,19 @@ con derivada:
 $$\phi_i(x)' := \begin{cases}  \frac{1}{h_{i-1}}  & x\in I_{i-1} \\
 -\frac{1}{h_{i}}  & x\in I_{i}\\ 0 & \text{ otro caso}\end{cases} $$
 
-Entonces el problema 
+Entonces el problema se convierte en 
 
-Se convierte en $$a(u,v)=(f,v)$$ con $$a(u,v)=\int_{D} u'v'+u'v+uv =  \quad (f,v) =\int_{D} f(x) v(x)dx  $$
+$$a(u,v)=(f,v)$$
 
-Ahora si tomamos $u$ y $v$ tales que: $$u = \sum_{i=1}^{n+1} u_i \phi_i\quad v = \sum_{i=1}^{n+1} v_i \phi_i $$ 
+con
+
+$$a(u,v)=\int_{D} u'v'+u'v+uv =  \quad (f,v) =\int_{D} f(x) v(x)dx  $$
 
 
+
+Ahora si tomamos $u$ y $v$ tales que: 
+
+$$u = \sum_{i=1}^{n+1} u_i \phi_i\quad v = \sum_{i=1}^{n+1} v_i \phi_i $$ 
 
 $a(u,v)-(f,v)=0$ se convierte en:
 
@@ -56,6 +62,8 @@ donde
 $$ \sum_{j=1}^{n+1}\int_{D} \left( \phi_i'\phi_j'+\phi_i'\phi_j+\phi_i\phi_j\right)u_j = \int_{D}f\phi_i \quad i=1,2,\ldots n+1 $$ 
 
 es un sistema de $n+1$ ecuaciones.
+
+
 
 En forma matricial: $$Au=b$$
 
@@ -74,11 +82,16 @@ $$
 Para $j=i\pm 1$, tenemos que 
 
 $$A_{i,i+1}=\int_{D}  \phi_i'\phi_{i+1}'+\phi_i'\phi_{i+1}+\phi_i\phi_{i+1} = \int_{x_{i}}^{x_{i+1}}  \phi_i'\phi_{i+1}'+\phi_i'\phi_{i+1}+\phi_i\phi_{i+1}$$
+
 $$A_{i,i-1}=\int_{D}  \phi_i'\phi_{i-1}'+\phi_i'\phi_{i-1}+\phi_i\phi_{i-1} = \int_{x_{i-1}}^{x_{i}}  \phi_i'\phi_{i-1}'+\phi_i'\phi_{i-1}+\phi_i\phi_{i-1}$$
+
+
+
 
 Entonces en el intervalo $[x_i, x_{i+1}]$ se actualizan los siguientes coeficientes de la matriz $A$:
 
 $$A_{ii}\leftarrow \int_{x_{i}}^{x_{i+1}} \left( \left( \phi_i^{-}\right)'\left( \phi_i^{-}\right)'+\left( \phi_i^{-}\right)'\left( \phi_i^{-}\right)+\left( \phi_i^{-}\right)\left( \phi_i^{-}\right)\right)=  a\left( \phi_i^{-},\phi_i^{-} \right) $$
+
 $$A_{i+1,i+1}\leftarrow \int_{x_{i}}^{x_{i+1}} \left( \left( \phi_{i+1}^{+}\right)'\left( \phi_{i+1}^{+}\right)'+\left( \phi_{i+1}^{+}\right)'\left( \phi_{i+1}^{+}\right)+\left( \phi_{i+1}^{+}\right)\left( \phi_{i+1}^{+}\right)\right)=a\left(\phi_{i+1}^{+},\phi_{i+1}^{+} \right) $$
 
 $$A_{i,i+1}\leftarrow \int_{x_{i}}^{x_{i+1}}  \left( \phi_{i}^{-}\right)'\left( \phi_{i+1}^{+}\right)'+\left( \phi_{i}^{-}\right)'\left( \phi_{i+1}^{+}\right)+\left( \phi_{i}^{-}\right)\left( \phi_{i+1}^{+}\right) = a\left( \phi_{i}^{-}, \phi_{i+1}^{+}\right) $$
@@ -98,12 +111,12 @@ using LinearAlgebra
 
 
 ```julia
-# Definición de la función u_exact
+# Definición de la solución exacta u_exact
 function u_exact(x)
     return exp(x)*(1-x)^2
 end
 
-# Definición de la función du_exact
+# Definición de la derivada de la solución exacta du_exact
 function du_exact(x)
     return  exp(x)*(x^2 - 1)
 end
@@ -118,25 +131,30 @@ end
 
 
 ```julia
+# Definición de función cuadratura() para aproximar la integral definida de una función
 """
-    cuadratura(f, a, b)
+###    cuadratura(f, a, b)
 
 Aproxima el valor de la integral de la función `f` en el intervalo `[a,b]` utilizando
 la fórmula de cuadratura de Gauss-Legendre con tres nodos.
 
-# Argumentos
+### Input:
+
 - `f`: Función a integrar.
 - `a`: Límite inferior del intervalo de integración.
 - `b`: Límite superior del intervalo de integración.
 
-# Salida
+### Output:
+
 - `val`: Aproximación del valor de la integral de `f` en el intervalo `[a,b]`.
 
-# Ejemplo
+### Ejemplo:
+
 ```julia
 f(x) = exp(x)
 a, b = 0, 1
 approx = cuadratura(f, a, b)
+```
 """
 function cuadratura(f,a,b)
         # Nodos de la cuadratura
@@ -146,7 +164,7 @@ function cuadratura(f,a,b)
     
         # Cálculo de integral utilizando la fórmula de cuadratura de Gauss-Legendre
         val = 5*f(x₁)+8*f(x₂)+5*f(x₃)         # Suma ponderada de f en los nodos
-        val = 0.5*(b-a)*(1/9)*val              # Multiplicación por el factor de escala
+        val = 0.5*(b-a)*val/9              # Multiplicación por el factor de escala
     
     return val  # Retorna el valor aproximado de la integral de f en [a,b]
 end
