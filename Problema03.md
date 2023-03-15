@@ -45,7 +45,6 @@ end
 
 
 ```julia
-# Definición de la función du_exact
 function du_exact(x)
     return -4π*sin(4π*x)
 end
