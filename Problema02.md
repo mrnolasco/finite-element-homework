@@ -451,7 +451,7 @@ plot!(u_exact, label = "Solución Exacta")
 
 
     
-![svg](output_23_0.svg)
+![svg](output_02.svg)
     
 
 
