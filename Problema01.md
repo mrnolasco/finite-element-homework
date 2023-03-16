@@ -110,7 +110,9 @@ $$ b_{i+1} \leftarrow \int_{x_{i}}^{x_{i+1}} f  \phi_{i+1}^{+} $$
 Aplicando las condiciones en la frontera:
 
 $$u_1 = 0$$
+
 $$u_{n+1} = 0$$
+
 
 ## Códigos
 
