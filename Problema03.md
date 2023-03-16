@@ -11,7 +11,7 @@
 
 Obtener el interpolador $v_I(x)$ de la funcion $v(x)= \cos(4\pi x)$ para el intervalo $D:= (0,1)$ utilizando los elementos finitos de Lagrange de segundo orden. 
 
-* Obtener entonces la tasa de convergencia para el error $e:= v_I-v$ en las normas $L^2(D)$ y $H^1(D)$ para $N = 10, 20, 40, 80, 160 $ donde $N$ es el número de subintervalos que dividen a $D$.
+* Obtener entonces la tasa de convergencia para el error $e:= v_I-v$ en las normas $L^2(D)$ y $H^1(D)$ para $N = 10, 20, 40, 80, 160$ donde $N$ es el número de subintervalos que dividen a $D$.
 
 
 ```julia
