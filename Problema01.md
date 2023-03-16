@@ -18,7 +18,7 @@ con las condiciones de frontera $u(0) = 0\ , \  u(1) =0$.
 donde $f(x) = \left(4\pi\right)^2 \left(\sin 4\pi x \right)  $. 
 
 * Observar que $u(x) =  \sin \left(4\pi x\right)$ es la solución del problema.
-* Obtener entonces la tasa de convergencia para el error $e:=u_h-u$ en las norma $L^2(D)$ y la seminorma $H^1(D)$ para $N=10, 20, 40, 80, 160$; donde $N$ es el número de subintervalos que dividen a $D$.
+* Obtener entonces la tasa de convergencia para el error $e:=u_h-u$ en la norma $L^2(D)$ y la seminorma $H^1(D)$ para $N=10, 20, 40, 80, 160$; donde $N$ es el número de subintervalos que dividen a $D$.
 
 ## Solución
 
@@ -469,12 +469,12 @@ plot!(u_exact, label = "Solución Exacta")
 
 
 
-### Cálculo de errores de aproximación en norma $L^2$ y $H^1$ `refina`
+### Cálculo de errores de aproximación en norma $L^2$ y la seminorma $H^1$ `refina`
 
 
 ```julia
 """
-Función que calcula los errores de aproximación en norma L² y H¹,
+Función que calcula los errores de aproximación en la norma L² y la seminorma H¹,
 y las tasas de convergencia en ambas normas, para un determinado
 números de ciclos de refinamiento. 
 
@@ -514,7 +514,7 @@ function refina(nI_approx_init, n_cicles)
         error_H¹ = 0.0
 
         ## Calculo del error ||u - u_h||_2 en la norma L²
-        ## Calculo del error ||u' - u'_h||_2 en la norma H¹
+        ## Calculo del error ||u' - u'_h||_2 en la seminorma H¹
         for i = 1:nI_approx
             errorL², errorH¹ = error_elemento(nodes, dofs, i)
             error_L² += errorL²
