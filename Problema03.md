@@ -11,14 +11,14 @@
 
 Obtener el interpolador $v_I(x)$ de la funcion $v(x)= \cos(4\pi x)$ para el intervalo $D:= (0,1)$ utilizando los elementos finitos de Lagrange de segundo orden. 
 
-* Obtener entonces la tasa de convergencia para el error $e:= v_I-v$ en las normas $L^2(D)$ y $H^1(D)$ para $N = 10, 20, 40, 80, 160$ donde $N$ es el número de subintervalos que dividen a $D$.
+* Obtener entonces la tasa de convergencia para el error $e:= v_I-v$ en la norma $L^2(D)$ y la seminorma $H^1(D)$ para $N = 10, 20, 40, 80, 160$ donde $N$ es el número de subintervalos que dividen a $D$.
 
 
 ## Solución
 
 El código comienza definiendo las funciones `u_exact(x)` y `du_exact(x)`, que devuelven el valor exacto de la solución `u(x) = cos (4π x)` y su derivada `u'(x) = -4πsin (4π x)` en un punto `x` dado.
 
-A continuación, se define la función `error(nodes, dofs, i)` que calcula el error entre la solución exacta `u(x)` y su aproximación en el i-ésimo subintervalo, en las normas `L²` y `H¹`, utilizando una aproximación por elementos finitos de Lagrange de segundo orden. 
+A continuación, se define la función `error(nodes, dofs, i)` que calcula el error entre la solución exacta `u(x)` y su aproximación en el i-ésimo subintervalo, en la norma `L²` y la seminorma `H¹`, utilizando una aproximación por elementos finitos de Lagrange de segundo orden. 
 
 La función utiliza una cuadratura Gaussiana de 3 puntos para aproximar la integral y tres funciones sombrero anónimas para aproximar la solución en cada subintervalo.
 
@@ -126,12 +126,12 @@ end
 
 
 
-### Cálculo de errores de aproximación en norma $L^2$ y $H^1$ `refina`
+### Cálculo de errores de aproximación en norma $L^2$ y la seminorma $H^1$ `refina`
 
 
 ```julia
 """
-Función que calcula los errores de aproximación en norma L² y H¹,
+Función que calcula los errores de aproximación en norma L² y la seminorma H¹,
 y las tasas de convergencia en ambas normas, para un determinado
 números de ciclos de refinamiento. 
 
@@ -175,7 +175,7 @@ function refina(nI_approx_init, n_cicles)
         error_H¹ = 0.0
 
         ## Calculo del error ||u - u_h||_2 en la norma L²
-        ## Calculo del error ||u' - u'_h||_2 en la norma H¹
+        ## Calculo del error ||u' - u'_h||_2 en la seminorma H¹
         for i = 1:nI_approx
             errorL², errorH¹ = error_elemento(nodes, dofs, i)
             error_L² += errorL²
