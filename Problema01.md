@@ -169,7 +169,7 @@ la fórmula de cuadratura de Gauss-Legendre con tres nodos.
 - `val`: Aproximación del valor de la integral de `f` en el intervalo `[a,b]`.
 
 """
-function cuadratura_gauss(f,a,b)
+function cuadratura_gauss(f, a, b)
         # Nodos de la cuadratura
         x₁ = -0.5*(b-a)*sqrt(3/5) + 0.5*(a+b)   # Nodo x₁
         x₂ = 0.5*(a + b)                        # Nodo x₂
