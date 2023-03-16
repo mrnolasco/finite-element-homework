@@ -17,7 +17,7 @@ con las condiciones de frontera $u(0) =1\ , \  u'(1) =0$.
 donde $f(x)=-2e^x+2(1-x)e^x+(1-x)^2e^x$. 
 
 * Observar que $u(x)=(1-x)^2e^x$ es la solución del problema.
-* Obtener entonces la tasa de convergencia para el error $e:=u_h-u$ en las normas $L_2(D)$ y $H_1(D)$ para $N=10, 20, 40, 80, 160$ donde $N$ es el número de subintervalos que dividen a $D$.
+* Obtener entonces la tasa de convergencia para el error $e:=u_h-u$ en las normas $L^2(D)$ y $H^1(D)$ para $N=10, 20, 40, 80, 160$; donde $N$ es el número de subintervalos que dividen a $D$.
 
 ## Solución
 
@@ -29,13 +29,13 @@ Definimos:
 
 $$h_i = x_{i+1}-x_i \quad I_i : = x\in [x_i, x_{i+1} ]$$
 
-Tomamos los elementos finitos de Lagrange: 
+Tomamos los elementos finitos de Lagrange de orden uno: 
 $$\left\lbrace \phi_1, \phi_2, \ldots, \phi_{n+1}  \right\rbrace $$
 
 donde 
 
 $$ \phi_i(x) := \begin{cases}  \frac{x-x_{i-1}}{h_{i-1}}  & x\in [x_{i-1},x_i]= I_{i-1} \\ 
-1-\frac{x-x_{i}}{h_{i}}  & x\in [x_{i},x_{i+1}]= I_{i}\\
+1-\frac{x-x_{i}}{h_{i}}  & x\in [x_{i},x_{i+1}]= I_{i}\\ 
 0 & \text{ otro caso}\end{cases} $$
 
 con derivada:
@@ -54,24 +54,24 @@ $$a(u,v)=\int_{D} u'v'+u'v+uv =  \quad (f,v) =\int_{D} f(x) v(x)dx  $$
 
 Ahora si tomamos $u$ y $v$ tales que: 
 
-$$u = \sum_{i=1}^{n+1} u_i \phi_i\quad v = \sum_{i=1}^{n+1} v_i \phi_i $$ 
+$$u = \sum_{j=1}^{n+1} u_j \phi_j\quad v = \sum_{i=1}^{n+1} v_i \phi_i $$ 
+
 
 $a(u,v)-(f,v)=0$ se convierte en:
 
-$$\sum_{i=1}^{n+1} v_i \left [ \sum_{j=1}^{n+1}\int_{D} \left( \phi_i'\phi_j'+\phi_i'\phi_j+\phi_i\phi_j\right)u_j - \int_{D}f\phi_i  \right] =0$$
+$$\sum_{i=1}^{n+1} v_i \left [ \sum_{j=1}^{n+1}\int_{D} \left( \phi_j'\phi_i'+\phi_j'\phi_i+\phi_j\phi_i\right)u_j - \int_{D}f\phi_i  \right] =0$$
 
 donde 
 
-$$ \sum_{j=1}^{n+1}\int_{D} \left( \phi_i'\phi_j'+\phi_i'\phi_j+\phi_i\phi_j\right)u_j = \int_{D}f\phi_i \quad i=1,2,\ldots n+1 $$ 
+$$ \sum_{j=1}^{n+1}\int_{D} \left( \phi_j'\phi_i'+\phi_j'\phi_i+\phi_j\phi_i\right)u_j = \int_{D}f\phi_i \quad i=1, 2,3,\ldots, n+1 $$ 
 
 es un sistema de $n+1$ ecuaciones.
 
 En forma matricial: $$Au=b$$
 
-con $$A_{ij}=\int_{D} \left( \phi_i'\phi_j'+\phi_i'\phi_j+\phi_i\phi_j\right) \quad \text{y} \quad b_i =\int_{D} f \phi_i $$
+con $$A_{ij}=\int_{D} \left( \phi_j'\phi_i'+\phi_j'\phi_i+\phi_j\phi_i\right) \quad \text{y} \quad b_i =\int_{D} f \phi_i $$
 
 Ya que los soportes de $\phi_i$ y $\phi_{i+2}$ se intersectan solo en el punto $\left\lbrace x_{i+1} \right\rbrace$, entonces el coeficiente $A_{ij}$ se anula si $|i-j|\geq 2$
-
 
 Para $j=i$, tenemos que 
 
@@ -82,32 +82,23 @@ $$
 
 Para $j=i\pm 1$, tenemos que 
 
-$$A_{i,i+1}=\int_{D}  \phi_i'\phi_{i+1}'+\phi_i'\phi_{i+1}+\phi_i\phi_{i+1} = \int_{x_{i}}^{x_{i+1}}  \phi_i'\phi_{i+1}'+\phi_i'\phi_{i+1}+\phi_i\phi_{i+1}$$
+$$A_{i,i+1}=\int_{D}  \phi_{i+1}'\phi_i'+\phi_{i+1}'\phi_i+\phi_{i+1}\phi_i = \int_{x_{i}}^{x_{i+1}}  \phi_{i+1}'\phi_i'+\phi_{i+1}'\phi_i+\phi_{i+1}\phi_i $$
 
-$$A_{i,i-1}=\int_{D}  \phi_i'\phi_{i-1}'+\phi_i'\phi_{i-1}+\phi_i\phi_{i-1} = \int_{x_{i-1}}^{x_{i}}  \phi_i'\phi_{i-1}'+\phi_i'\phi_{i-1}+\phi_i\phi_{i-1}$$
+$$A_{i,i-1}=\int_{D}  \phi_{i-1}'\phi_i'+\phi_{i-1}'\phi_i+\phi_{i-1}\phi_i = \int_{x_{i-1}}^{x_{i}}  \phi_{i-1}'\phi_i'+\phi_{i-1}'\phi_i+\phi_{i-1}\phi_i $$
 
 Entonces en el intervalo $[x_i, x_{i+1}]$ se actualizan los siguientes coeficientes de la matriz $A$:
-
 $$A_{ii}\leftarrow \int_{x_{i}}^{x_{i+1}} \left( \left( \phi_i^{-}\right)'\left( \phi_i^{-}\right)'+\left( \phi_i^{-}\right)'\left( \phi_i^{-}\right)+\left( \phi_i^{-}\right)\left( \phi_i^{-}\right)\right)=  a\left( \phi_i^{-},\phi_i^{-} \right) $$
-
 $$A_{i+1,i+1}\leftarrow \int_{x_{i}}^{x_{i+1}} \left( \left( \phi_{i+1}^{+}\right)'\left( \phi_{i+1}^{+}\right)'+\left( \phi_{i+1}^{+}\right)'\left( \phi_{i+1}^{+}\right)+\left( \phi_{i+1}^{+}\right)\left( \phi_{i+1}^{+}\right)\right)=a\left(\phi_{i+1}^{+},\phi_{i+1}^{+} \right) $$
 
-$$A_{i,i+1}\leftarrow \int_{x_{i}}^{x_{i+1}}  \left( \phi_{i}^{-}\right)'\left( \phi_{i+1}^{+}\right)'+\left( \phi_{i}^{-}\right)'\left( \phi_{i+1}^{+}\right)+\left( \phi_{i}^{-}\right)\left( \phi_{i+1}^{+}\right) = a\left( \phi_{i}^{-}, \phi_{i+1}^{+}\right) $$
+$$A_{i,i+1}\leftarrow \int_{x_{i}}^{x_{i+1}} \left( \phi_{i+1}^{+}\right)'\left( \phi_{i}^{-}\right)'+\left( \phi_{i+1}^{+}\right)'\left( \phi_{i}^{-}\right)+\left( \phi_{i+1}^{+}\right)\left( \phi_{i}^{-}\right) = a \left( \phi_{i+1}^{+}, \phi_{i}^{-}\right) $$
 
-$$A_{i+1,i}\leftarrow \int_{x_{i}}^{x_{i+1}} \left( \phi_{i+1}^{+}\right)'\left( \phi_{i}^{-}\right)'+\left( \phi_{i+1}^{+}\right)'\left( \phi_{i}^{-}\right)+\left( \phi_{i+1}^{+}\right)\left( \phi_{i}^{-}\right) = a \left( \phi_{i+1}^{+}, \phi_{i}^{-}\right) $$
+$$A_{i+1,i}\leftarrow \int_{x_{i}}^{x_{i+1}}  \left( \phi_{i}^{-}\right)'\left( \phi_{i+1}^{+}\right)'+\left( \phi_{i}^{-}\right)'\left( \phi_{i+1}^{+}\right)+\left( \phi_{i}^{-}\right)\left( \phi_{i+1}^{+}\right) = a\left( \phi_{i}^{-}, \phi_{i+1}^{+}\right) $$
 
 Y para el vector $b$ tenemos:
-
 $$ b_i \leftarrow \int_{x_{i}}^{x_{i+1}} f \phi_{i}^{-} $$
-
 $$ b_{i+1} \leftarrow \int_{x_{i}}^{x_{i+1}} f  \phi_{i+1}^{+} $$
 
 ## Códigos
-
-
-```julia
-using LinearAlgebra
-```
 
 ### Solución exacta `u_exact`
 
@@ -163,15 +154,15 @@ la fórmula de cuadratura de Gauss-Legendre con tres nodos.
 
 
 """
-function cuadratura_gauss(f,a,b)
+function cuadratura_gauss(f,a , b)
         # Nodos de la cuadratura
-        x₁ = -0.5*(b-a)*sqrt(3/5) + 0.5*(a+b)  # Nodo x₁
-        x₂ = 0.5*(a + b)                         # Nodo x₂
-        x₃ = 0.5*(b-a)*sqrt(3/5) + 0.5*(a+b)     # Nodo x₃
+        x₁ = -0.5*(b-a)*sqrt(3/5) + 0.5*(a+b)   # Nodo x₁
+        x₂ = 0.5*(a + b)                        # Nodo x₂
+        x₃ = 0.5*(b-a)*sqrt(3/5) + 0.5*(a+b)    # Nodo x₃
     
         # Cálculo de integral utilizando la fórmula de cuadratura de Gauss-Legendre
-        val = 5*f(x₁) + 8*f(x₂) + 5*f(x₃)         # Suma ponderada de f en los nodos
-        val = 0.5*(b-a)*val/9              # Multiplicación por el factor de escala
+        val = 5*f(x₁) + 8*f(x₂) + 5*f(x₃)       # Suma ponderada de f en los nodos
+        val = 0.5*(b-a)*val/9                   # Multiplicación por el factor de escala
     
     return val  # Retorna el valor aproximado de la integral de f en [a,b]
 end
@@ -191,8 +182,8 @@ end
 """
 ###    error_elemento(nodes, dofs, i)
 
-Función que calcula el error de aproximación en la norma L2
-y en la seminorma H1 en un elemento de la malla.
+Función que calcula el error de aproximación en la norma L²
+y en la seminorma H¹ en un elemento de la malla.
 
 ### Input:
 
@@ -202,8 +193,8 @@ y en la seminorma H1 en un elemento de la malla.
 
 ### Output:
 
-- `val_L2`: valor del error L2 en el elemento
-- `val_H1`: valor del error H1 en el elemento
+- `val_L²`: valor del error L² en el elemento
+- `val_H¹`: valor del error H¹ en el elemento
 """
 function error_elemento(nodes, dofs, i)    
     # Obtención de las coordenadas de los nodos y los grados de libertad
@@ -216,21 +207,21 @@ function error_elemento(nodes, dofs, i)
     hatᵢ = x -> uᵢ*(1 - (x - xᵢ)/(xᵢ₊₁ - xᵢ))
     hatᵢ₊₁ = x -> uᵢ₊₁*(x - xᵢ)/(xᵢ₊₁ - xᵢ)  
     
-    # Definición de función anónima de error en L2
+    # Definición de función anónima de error en L²
     L = x -> (u_exact(x) - hatᵢ(x) - hatᵢ₊₁(x))^2
     
     # Definición de las derivadas de las funciones hat
     dhatᵢ = x-> -uᵢ/(xᵢ₊₁ - xᵢ)
     dhatᵢ₊₁ = x-> uᵢ₊₁/(xᵢ₊₁ - xᵢ)
     
-    # Definición de función anónima de error en H1
+    # Definición de función anónima de error en H¹
     H = x -> (du_exact(x) - dhatᵢ(x) - dhatᵢ₊₁(x))^2
         
     # Cuadratura de Gauss para aproximar la integral
-        val_L2 = cuadratura_gauss(L, xᵢ, xᵢ₊₁)
-        val_H1 = cuadratura_gauss(H, xᵢ, xᵢ₊₁)
+        val_L² = cuadratura_gauss(L, xᵢ, xᵢ₊₁)
+        val_H¹ = cuadratura_gauss(H, xᵢ, xᵢ₊₁)
     
-    return val_L2, val_H1
+    return val_L², val_H¹
 end
 ```
 
@@ -442,7 +433,7 @@ end
 using Plots
 
 # Número de intervalos 
-n = 10
+n = 30
 
 # Solución del problema con malla aleatoria
 x, u_h = solve_u(n,2);
@@ -458,17 +449,17 @@ plot!(u_exact, label = "Solución Exacta")
 
 
     
-![svg](output.svg)
+![svg](output_23_0.svg)
     
 
 
 
-### Cálculo de errores de aproximación en norma L2 y H1 `refina`
+### Cálculo de errores de aproximación en norma $L^2$ y $H^1$ `refina`
 
 
 ```julia
 """
-Función que calcula los errores de aproximación en norma L2 y H1,
+Función que calcula los errores de aproximación en norma L² y H¹,
 y las tasas de convergencia en ambas normas, para un determinado
 números de ciclos de refinamiento. 
 
@@ -477,10 +468,10 @@ Input:
 - `n_cicles`: número de ciclos de refinamiento a realizar.
 
 Output:
-- `L2_error_vec`: vector con error en L2 para cada ciclo de refinamiento.
-- `err_rate_L2`: vector con tasa de convergencia en L2 para cada ciclo de refinamiento.
-- `H1_error_vec`: vector con error en H1 para cada ciclo de refinamiento.
-- `err_rate_H1`: vector con tasa de convergencia en H1 para cada ciclo de refinamiento.
+- `L²_error_vec`: vector con error en L² para cada ciclo de refinamiento.
+- `err_rate_L²`: vector con tasa de convergencia en L² para cada ciclo de refinamiento.
+- `H¹_error_vec`: vector con error en H¹ para cada ciclo de refinamiento.
+- `err_rate_H¹`: vector con tasa de convergencia en H¹ para cada ciclo de refinamiento.
 """
 function refina(nI_approx_init, n_cicles)
     # Construimos un vector que contiene el número total de puntos en el mallado.
@@ -488,11 +479,11 @@ function refina(nI_approx_init, n_cicles)
     # El primer ciclo no se refina
     nI_approx_vec = [2^i*nI_approx_init for i in 0:n_cicles-1]
     
-    # Vector que contiene el error en L2 para cada ciclo de refinamiento
-    L2_error_vec = zeros(n_cicles);
+    # Vector que contiene el error en L² para cada ciclo de refinamiento
+    L²_error_vec = zeros(n_cicles);
 
-    # Vector que contiene el error en H1 para cada ciclo de refinamiento
-    H1_error_vec = zeros(n_cicles);
+    # Vector que contiene el error en H¹ para cada ciclo de refinamiento
+    H¹_error_vec = zeros(n_cicles);
     
     # Ciclos de refinamiento
     for k = 1:n_cicles
@@ -503,34 +494,34 @@ function refina(nI_approx_init, n_cicles)
         # Valores aproximados de la función u en los nodos de la malla
         nodes, dofs = solve_u(nI_approx)
         
-        # Incialización del error en L2 y H1
-        error_L2 = 0.0
-        error_H1 = 0.0
+        # Incialización del error en L² y H¹
+        error_L² = 0.0
+        error_H¹ = 0.0
 
-        ## Calculo del error ||u - u_h||_2 en la norma L2
-        ## Calculo del error ||u' - u'_h||_2 en la norma H1
+        ## Calculo del error ||u - u_h||_2 en la norma L²
+        ## Calculo del error ||u' - u'_h||_2 en la norma H¹
         for i = 1:nI_approx
-            errorL2, errorH1 = error_elemento(nodes, dofs, i)
-            error_L2 += errorL2
-            error_H1 += errorH1
+            errorL², errorH¹ = error_elemento(nodes, dofs, i)
+            error_L² += errorL²
+            error_H¹ += errorH¹
         end
-        error_L2 = sqrt(error_L2)
-        error_H1 = sqrt(error_H1)
-        L2_error_vec[k] = error_L2
-        H1_error_vec[k] = error_H1
+        error_L² = sqrt(error_L²)
+        error_H¹ = sqrt(error_H¹)
+        L²_error_vec[k] = error_L²
+        H¹_error_vec[k] = error_H¹
     end
     
     # Cálculo de la tasa de convergencia
-    err_rate_L2 = zeros(n_cicles)
-    err_rate_L2[1] = 1
-    err_rate_H1 = zeros(n_cicles)
-    err_rate_H1[1] = 1
+    err_rate_L² = zeros(n_cicles)
+    err_rate_L²[1] = 1
+    err_rate_H¹ = zeros(n_cicles)
+    err_rate_H¹[1] = 1
 
     for i = 2:n_cicles
-        err_rate_L2[i] = log(L2_error_vec[i]/L2_error_vec[i-1])/log(1/2)
-        err_rate_H1[i] = log(H1_error_vec[i]/H1_error_vec[i-1])/log(1/2)
+        err_rate_L²[i] = log(L²_error_vec[i]/L²_error_vec[i-1])/log(1/2)
+        err_rate_H¹[i] = log(H¹_error_vec[i]/H¹_error_vec[i-1])/log(1/2)
     end
-    return nI_approx_vec, L2_error_vec, err_rate_L2, H1_error_vec, err_rate_H1
+    return nI_approx_vec, L²_error_vec, err_rate_L², H¹_error_vec, err_rate_H¹
 end
 ```
 
@@ -546,13 +537,13 @@ end
 
 ```julia
 using Printf
-function tabla(nI, L2, r_L2, H1, r_H1)
+function tabla(nI, L², r_L², H¹, r_H¹)
     # Impresión de la tabla de resultados
-    println("     n   L2_error   L2_err_rate   H1_error  H1_err_rate\n")
-        s = @sprintf "| %4d | %1.3e | %1.3e | %1.3e | %1.3e |" nI[1] L2[1] r_L2[1] H1[1] r_H1[1];
+    println("     n   L²_error   L²_err_rate   H¹_error   H¹_err_rate\n")
+        s = @sprintf "| %4d | %1.3e | %1.4e | %1.3e | %1.4e |" nI[1] L²[1] r_L²[1] H¹[1] r_H¹[1];
         println(s)
     for i = 2:n_cicles
-        s = @sprintf "| %4d | %1.3e | %1.3e | %1.3e | %1.3e |" nI[i] L2[i] r_L2[i] H1[i] r_H1[i];
+        s = @sprintf "| %4d | %1.3e | %1.4e | %1.3e | %1.4e |" nI[i] L²[i] r_L²[i] H¹[i] r_H¹[i];
         println(s)
     end
 end
@@ -582,19 +573,19 @@ n_cicles = 8
 
 
 ```julia
-nI, L2, r_L2, H1, r_H1 = refina(nI_approx_init, n_cicles);  
+nI, L², r_L², H¹, r_H¹ = refina(nI_approx_init, n_cicles);  
 
-tabla(nI, L2, r_L2, H1, r_H1)
+tabla(nI, L², r_L², H¹, r_H¹)
 ```
 
-         n   L2_error   L2_err_rate   H1_error  H1_err_rate
+         n   L²_error   L²_err_rate   H¹_error   H¹_err_rate
     
-    |   10 | 1.685e-03 | 1.000e+00 | 5.948e-02 | 1.000e+00 |
-    |   20 | 4.232e-04 | 1.994e+00 | 2.986e-02 | 9.941e-01 |
-    |   40 | 1.059e-04 | 1.998e+00 | 1.495e-02 | 9.985e-01 |
-    |   80 | 2.649e-05 | 2.000e+00 | 7.475e-03 | 9.996e-01 |
-    |  160 | 6.623e-06 | 2.000e+00 | 3.738e-03 | 9.999e-01 |
-    |  320 | 1.656e-06 | 2.000e+00 | 1.869e-03 | 1.000e+00 |
-    |  640 | 4.139e-07 | 2.000e+00 | 9.344e-04 | 1.000e+00 |
-    | 1280 | 1.035e-07 | 2.000e+00 | 4.672e-04 | 1.000e+00 |
+    |   10 | 1.685e-03 | 1.0000e+00 | 5.948e-02 | 1.0000e+00 |
+    |   20 | 4.232e-04 | 1.9935e+00 | 2.986e-02 | 9.9406e-01 |
+    |   40 | 1.059e-04 | 1.9984e+00 | 1.495e-02 | 9.9852e-01 |
+    |   80 | 2.649e-05 | 1.9996e+00 | 7.475e-03 | 9.9963e-01 |
+    |  160 | 6.623e-06 | 1.9999e+00 | 3.738e-03 | 9.9991e-01 |
+    |  320 | 1.656e-06 | 2.0000e+00 | 1.869e-03 | 9.9998e-01 |
+    |  640 | 4.139e-07 | 2.0000e+00 | 9.344e-04 | 9.9999e-01 |
+    | 1280 | 1.035e-07 | 2.0000e+00 | 4.672e-04 | 1.0000e+00 |
     
