@@ -35,7 +35,8 @@ $$\left\lbrace \phi_1, \phi_2, \ldots, \phi_{n+1}  \right\rbrace $$
 
 donde 
 
-$$ \phi_i(x) := \begin{cases}  \frac{x-x_{i-1}}{h_{i-1}}  & x\in [x_{i-1},x_i]= I_{i-1} \\ 
+$$ \phi_i(x) := 
+\begin{cases}  \frac{x-x_{i-1}}{h_{i-1}}  & x\in [x_{i-1},x_i]= I_{i-1} \\ 
 1-\frac{x-x_{i}}{h_{i}}  & x\in [x_{i},x_{i+1}]= I_{i}\\ 
 0 & \text{ otro caso}\end{cases} $$
 
