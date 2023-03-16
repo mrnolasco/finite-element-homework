@@ -14,7 +14,7 @@ Obtener el interpolador $v_I(x)$ de la funcion $v(x)= \cos(4\pi x)$ para el inte
 * Obtener entonces la tasa de convergencia para el error $e:= v_I-v$ en la norma $L^2(D)$ y la seminorma $H^1(D)$ para $N = 10, 20, 40, 80, 160$ donde $N$ es el número de subintervalos que dividen a $D$.
 
 
-![svg](hat2f.svg)
+![svg](hatf02.svg)
 
 
 
