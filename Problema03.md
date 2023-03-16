@@ -14,10 +14,6 @@ Obtener el interpolador $v_I(x)$ de la funcion $v(x)= \cos(4\pi x)$ para el inte
 * Obtener entonces la tasa de convergencia para el error $e:= v_I-v$ en las normas $L^2(D)$ y $H^1(D)$ para $N = 10, 20, 40, 80, 160$ donde $N$ es el número de subintervalos que dividen a $D$.
 
 
-```julia
-
-```
-
 ## Solución
 
 El código comienza definiendo las funciones `u_exact(x)` y `du_exact(x)`, que devuelven el valor exacto de la solución `u(x) = cos (4π x)` y su derivada `u'(x) = -4πsin (4π x)` en un punto `x` dado.
