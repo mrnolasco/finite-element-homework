@@ -68,7 +68,7 @@ donde
 
 $$\begin{matrix}
 u_1 = 0 \\
-\sum_{j=1}^{n+1} \int_{D} \left( \phi_i'\phi_j'\right)u_j = \int_{D}f\phi_i \quad i=2,3,\ldots, n\\
+\sum_{j=1}^{n+1}\quad \int_{D} \left( \phi_i'\phi_j'\right)u_j = \int_{D}f\phi_i \quad i=2,3,\ldots, n\\
 u_{n+1} = 0
 \end{matrix}$$
 
