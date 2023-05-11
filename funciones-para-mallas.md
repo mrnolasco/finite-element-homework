@@ -357,6 +357,3 @@ plot_mesh(MSH[6])
     
 ![svg](output_06_0.svg)
 
-```julia
-plot_mesh(MSH[1])
-```
