@@ -12,7 +12,7 @@ Para aproximar la integral sobre el triángulo de referencia $\hat{K}$, se utili
 
 En la siguiente tabla se muestran diferentes conjuntos de puntos de cuadratura y pesos para distintos grados de precisión. Los puntos de cuadratura se expresan en coordenadas baricéntricas, que son convenientes para trabajar con triángulos. La variable $S$ es la superficie del triángulo de referencia $\hat{K}$.
 
-\begin{equation}
+$$
 \begin{array}{ccc|cc|c}
 \hline n & k_{\mathrm{q}} & l_{\mathrm{q}} & \text { Barycentric coord. } & \text { Multiplicity } & \text { Weights } \omega_l \\
 \hline 1 & 1 & 1 & \left(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}\right) & 1 & S \\
@@ -25,7 +25,7 @@ En la siguiente tabla se muestran diferentes conjuntos de puntos de cuadratura y
 & & & (1,0,0) & 3 & \frac{1}{20} S \\
 \hline
 \end{array}
-\end{equation}
+$$
 
 Ern, A., & Guermond, J. L. (2019). Theory and Practice of Finite Elements. Springer. Chapter 8. Quadratures, Assembling, and Storage. Table 8.2. Nodes and weights for quadratures on a triangle of area S, p 360.
 
