@@ -12,17 +12,7 @@
 ```julia
 # Cargamos paquetes 
 using Plots, DataFrames, CSV, LinearAlgebra, Combinatorics
-
-# Cargamos el ambiente del gráfico
-plotlyjs()
 ```
-
-
-
-
-    Plots.PlotlyJSBackend()
-
-
 
 * Function:  `leer_archivo(ruta::AbstractString)`
 
@@ -286,6 +276,86 @@ MSH = read_mesh.(msh);
 
 ## Graficando una malla
 
+
+```julia
+plot_mesh(MSH[1])
+```
+
+
+
+
+    
+![svg](output_01_0.svg)
+    
+
+
+
+
+```julia
+plot_mesh(MSH[2])
+```
+
+
+
+
+    
+![svg](output_02_0.svg)
+    
+
+
+
+
+```julia
+plot_mesh(MSH[3])
+```
+
+
+
+
+    
+![svg](output_03_0.svg)
+    
+
+
+
+
+```julia
+plot_mesh(MSH[4])
+```
+
+
+
+
+    
+![svg](output_04_0.svg)
+    
+
+
+
+
+```julia
+plot_mesh(MSH[5])
+```
+
+
+
+
+    
+![svg](output_05_0.svg)
+    
+
+
+
+
+```julia
+plot_mesh(MSH[6])
+```
+
+
+
+
+    
+![svg](output_06_0.svg)
 
 ```julia
 plot_mesh(MSH[1])
