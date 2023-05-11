@@ -142,7 +142,8 @@ end
 ### Integral de una función dada una malla y una regla de cuadratura:
 
 $$
-\int_{\Omega} v(x,y) dxdy &= \sum_{K\in T_h} \int_{K} v(x,y) dxdy
+\int_{\Omega} v(x,y) dxdy 
+= \sum_{K\in T_h} \int_{K} v(x,y) dxdy
 = \sum_{K\in T_h} \int_{\hat{K}}v\left( T_k(\hat{x},\hat{y}) \right) \left\vert det\left(J_K\right) \right\vert d\hat{x}d\hat{y}
 = \sum_{K\in T_h} \left(\sum_{l=1}^{l_q}\omega_l\ v\left( T_K(\hat{\xi}_l,\hat{\eta}_l) \right)   \right) \left\vert det\left(J_K\right) \right\vert 
 $$
