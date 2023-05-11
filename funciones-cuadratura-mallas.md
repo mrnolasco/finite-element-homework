@@ -155,7 +155,7 @@ $$(\hat{\xi},\hat{\eta}) = \lambda_1 (0,0) +\lambda_2 (1,0) + \lambda_2 (0,1) = 
 Además si $K=\triangle Z_0Z_1Z_2 \in T_h$ es un elemento de la malla $K=\triangle Z_0Z_1Z_2$ la transformación $T_K: \hat{K} \rightarrow K$ que lleva los vértices de $\hat{K}$ en los vértices de $K$ está dada por:
 
 $$
-T_K(\hat{\xi},\hat{\eta}) = \left[ z_1-z_0 \  \ | \begin{matrix} \ \\ \ \end{matrix} \ z_2-z_0 \right] \left(\begin{matrix} \hat{\xi} \\ \hat{\eta} \end{matrix}\right) + z_0
+T_K(\hat{\xi},\hat{\eta}) = \left[ z_1-z_0 \  \ | \begin{matrix} \ \\ \ \end{matrix} \ z_2-z_0 \right] \left(\begin{matrix} \hat{\xi} \\\ \hat{\eta} \end{matrix}\right) + z_0
 $$
 
 Con $z_i$ el vector columna con las coordenadas del punto $Z_i$
