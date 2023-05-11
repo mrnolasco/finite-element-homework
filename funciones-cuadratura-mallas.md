@@ -192,9 +192,7 @@ function integrate_f_mesh(f::Function, mesh::Dict, n::Int)
         multi_q = quad["multi_q"]
     g_points, w_points = gauss_points(bar_coo_q, multi_q, ω_l)
         # Seleccionar los dos primeros puntos de la matriz g_points como gpoints.
-        g_points = 1.0*g_points[2:3,:]
-        # Devolver los puntos y pesos de Gauss.
-        w_points = 1.0*w_points
+        g_points = g_points[2:3,:]
 
     int_glob = 0.0
     # Cálculo de la integral global
