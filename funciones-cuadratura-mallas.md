@@ -141,11 +141,10 @@ end
 
 ### Integral de una función dada una malla y una regla de cuadratura:
 
-\begin{align*}
-\int_{\Omega} v(x,y) dxdy &= \sum_{K\in T_h} \int_{K} v(x,y) dxdy\\
-&= \sum_{K\in T_h} \int_{\hat{K}}v\left( T_k(\hat{x},\hat{y}) \right) \left\vert det\left(J_K\right) \right\vert d\hat{x}d\hat{y}\\
-&= \sum_{K\in T_h} \left(\sum_{l=1}^{l_q}\omega_l\ v\left( T_K(\hat{\xi}_l,\hat{\eta}_l) \right)   \right) \left\vert det\left(J_K\right) \right\vert 
-\end{align*}
+$$\int_{\Omega} v(x,y) dxdy &= \sum_{K\in T_h} \int_{K} v(x,y) dxdy
+= \sum_{K\in T_h} \int_{\hat{K}}v\left( T_k(\hat{x},\hat{y}) \right) \left\vert det\left(J_K\right) \right\vert d\hat{x}d\hat{y}
+= \sum_{K\in T_h} \left(\sum_{l=1}^{l_q}\omega_l\ v\left( T_K(\hat{\xi}_l,\hat{\eta}_l) \right)   \right) \left\vert det\left(J_K\right) \right\vert 
+$$
 
 Sea $\hat{K} = \triangle OE_1E_2$ con nodos en el origen y los puntos $(1,0)$, $(0,1)$, entonces las coordenadas $(\hat{\xi}, \hat{\eta})$ en términos de las coordenadas baricéntricas $(\lambda_1: \lambda_2 :\lambda_3)$ son:
 
