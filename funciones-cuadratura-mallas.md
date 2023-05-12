@@ -148,9 +148,9 @@ $$
 = \sum_{K\in T_h} \left(\sum_{l=1}^{l_q}\omega_l\ v\left( T_K(\hat{\xi}_l,\hat{\eta}_l) \right)   \right) \left\vert det\left(J_K\right) \right\vert 
 $$
 
-Sea $\hat{K} = \triangle OE_1E_2$ con nodos en el origen y los puntos $(1,0)$, $(0,1)$, entonces las coordenadas $(\hat{\xi}, \hat{\eta})$ en términos de las coordenadas baricéntricas $(\lambda_1: \lambda_2 :\lambda_3)$ son:
+Sea $\hat{K} = \triangle OE_1E_2$ con nodos en el origen y los puntos $(1,0)$, $(0,1)$, entonces las coordenadas $(\hat{\xi}, \hat{\eta})$ en términos de las coordenadas baricéntricas $(\lambda_0: \lambda_1 :\lambda_2)$ son:
 
-$$(\hat{\xi},\hat{\eta}) = \lambda_1 (0,0) +\lambda_2 (1,0) + \lambda_2 (0,1) = (\lambda_1,\lambda_2)  $$
+$$(\hat{\xi},\hat{\eta}) = \lambda_0 (0,0) +\lambda_1 (1,0) + \lambda_2 (0,1) = (\lambda_1,\lambda_2)  $$
 
 Además si $K=\triangle Z_0Z_1Z_2 \in T_h$ es un elemento de la malla $K=\triangle Z_0Z_1Z_2$ la transformación $T_K: \hat{K} \rightarrow K$ que lleva los vértices de $\hat{K}$ en los vértices de $K$ está dada por:
 
