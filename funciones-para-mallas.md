@@ -6,66 +6,32 @@
 
 > Alumno: Mario Rafael Nolasco Estrada. mnolasco@ciencias.unam.mx
 
-# Funciones para mallas
-
-
 ```julia
 # Cargamos paquetes 
-using Plots, DataFrames, CSV, LinearAlgebra, Combinatorics
+using Plots, DataFrames, CSV, LinearAlgebra, Combinatorics, PrettyTables
 ```
 
+# Funciones para mallas
+
 * Function:  `leer_archivo(ruta::AbstractString)`
-
-    La función `leer_archivo` lee un archivo CSV en la ruta especificada y crea un diccionario con los datos leídos. La salida es un diccionario con los siguientes campos: 
-    - `"nbNod"`: Un entero que representa el número de nodos.
-    - `"POS"`: Una matriz de tipo `Float64` con las coordenadas de posición.
-    - `"LINES"`: Una matriz de tipo `Int` que contiene la información de líneas.
-    - `"TRIANGLES"`: Una matriz de tipo `Int` que contiene la información de triángulos.
-    - `"PNT"`: Una matriz de tipo `Int` que contiene la información de puntos.
-    
-
-* Function: `read_mesh(msh::Dict)`
-
-    La función read_mesh toma un diccionario msh que contiene información de una malla y devuelve otro diccionario mesh que contiene más información de la misma malla. La salida es un diccionario con los siguientes campos:
-    Un diccionario con los siguientes campos:
-    - `nb_nodes`  : número de nodos de la malla.
-    - `nodes`  : matriz con coordenadas de los nodos de la malla.
-    - `elems_nodes_conn`  : matriz con las conexiones nodales de los elementos de la malla.
-    - `nb_elems`  : número de elementos de la malla.
-    - `nb_ofaces`  : número de caras externas de la malla.
-    - `sorted_triangles` : matriz temporal con nodos de cada triángulo ordenados.
-    - `elems_faces_conn`  : matriz con conexiones entre los elementos y las caras.
-    - `faces_elems_conn`  : matriz con conexiones entre las caras y los elementos.
-    - `faces_nodes_conn`  : matriz con conexiones nodales de las caras.
-    - `ofaces_bool`  : matriz booleana que indica si una cara es externa.
-    - `ofaces_nodes_conn`  : matriz con conexiones nodales de las caras externas.
-    - `nb_faces`  : número de caras de la malla.
-    - `onodes_bool`  : matriz booleana que indica si un nodo está en el borde de la malla.
-    
-  
-
-* Function: `plot_mesh(mesh::Dict)`
-
-    La función plot_mesh toma un diccionario mesh que contiene información de una malla y la grafica en una figura. Esta función no tiene una salida.
 
 
 ```julia
 """
-    leer_archivo(ruta::AbstractString)
+## `leer_archivo(ruta::AbstractString)`
 
 La función `leer_archivo` lee un archivo CSV en la ruta especificada 
-y crea un diccionario con los datos leídos.
+y crea un diccionario con los datos que contiene.
 
-# Argumentos
-- `ruta::AbstractString`: La ruta del archivo CSV a leer.
+## Argumentos
+- `ruta::AbstractString`: La ruta del archivo CSV con los datos de la malla.
 
-# Salida
-Un diccionario con los siguientes campos:
-- `"nbNod"`: Un entero que representa el número de nodos.
-- `"POS"`: Una matriz de tipo `Float64` con las coordenadas de posición.
-- `"LINES"`: Una matriz de tipo `Int` que contiene la información de líneas.
-- `"TRIANGLES"`: Una matriz de tipo `Int` que contiene la información de triángulos.
-- `"PNT"`: Una matriz de tipo `Int` que contiene la información de puntos.
+## Salida
+- Un diccionario con los siguientes campos:
+    - `"nbNod"` : Entero que representa el número de nodos en la malla.
+    - `"POS"` : Matriz con las coordenadas de posición de cada nodo.
+    - `"LINES"` : Matriz que contiene la información de caras.
+    - `"TRIANGLES"` : Matriz que contiene la información de los elementos.
 """
 function leer_archivo(ruta::AbstractString)
     # Cargar datos del archivo
@@ -76,21 +42,18 @@ function leer_archivo(ruta::AbstractString)
     idx_POS = data[:,1].== "POS"
     idx_LIN = data[:,1].== "LINES"
     idx_TRI = data[:,1].== "TRIANGLES"
-    idx_PNT = data[:,1].== "PNT"
     
     # Definir las variables
     nbNod = convert.(Int, data[idx_nbN,2][1])
     POS = convert.(Float64,[data[idx_POS,2] data[idx_POS,3]])
     LINES = convert.(Int,[data[idx_LIN,2] data[idx_LIN,3] data[idx_LIN,4]])
     TRIANGLES = convert.(Int,[data[idx_TRI,2] data[idx_TRI,3] data[idx_TRI,4] data[idx_TRI,5]])
-    PNT = convert.(Int,[data[idx_PNT,2] data[idx_PNT,3]])
 
     # Crear y retornar el diccionario
     return Dict("nbNod" => nbNod, 
                 "POS" => POS, 
                 "LINES" => LINES, 
-                "TRIANGLES" => TRIANGLES, 
-                "PNT" => PNT)
+                "TRIANGLES" => TRIANGLES)
 end
 ```
 
@@ -101,32 +64,34 @@ end
 
 
 
+* Function: `read_mesh(msh::Dict)`
+
 
 ```julia
 """
-    read_mesh(msh::Dict)
+## `read_mesh(msh::Dict)`
 
 La función `read_mesh` toma un diccionario `msh` que contiene información de una malla
 y devuelve otro diccionario `mesh` que contiene más información de la misma malla.
 
-# Argumentos
--`msh::Dict` es una estructura de datos del tipo Dict{String, Any}.
+## Argumentos
+- `msh` : Estructura de datos con los datos de la malla. 
 
-# Salida
-Un diccionario con los siguientes campos:
-- `nb_nodes`  : número de nodos de la malla.
-- `nodes`  : matriz con coordenadas de los nodos de la malla.
-- `elems_nodes_conn`  : matriz con las conexiones nodales de los elementos de la malla.
-- `nb_elems`  : número de elementos de la malla.
-- `nb_ofaces`  : número de caras externas de la malla.
-- `sorted_triangles` : matriz temporal con nodos de cada triángulo ordenados.
-- `elems_faces_conn`  : matriz con conexiones entre los elementos y las caras.
-- `faces_elems_conn`  : matriz con conexiones entre las caras y los elementos.
-- `faces_nodes_conn`  : matriz con conexiones nodales de las caras.
-- `ofaces_bool`  : matriz booleana que indica si una cara es externa.
-- `ofaces_nodes_conn`  : matriz con conexiones nodales de las caras externas.
-- `nb_faces`  : número de caras de la malla.
-- `onodes_bool`  : matriz booleana que indica si un nodo está en el borde de la malla.
+## Salida
+- Un diccionario con los siguientes campos:
+    - `nb_nodes`  : Número de nodos de la malla.
+    - `nodes`  : Matriz con coordenadas de los nodos de la malla.
+    - `elems_nodes_conn`  : Matriz con las conexiones nodales de los elementos de la malla.
+    - `nb_elems`  : Número de elementos de la malla.
+    - `nb_ofaces`  : Número de caras externas de la malla.
+    - `sorted_triangles` : Matriz temporal con nodos de cada triángulo ordenados.
+    - `elems_faces_conn`  : Matriz con conexiones entre los elementos y las caras.
+    - `faces_elems_conn`  : Matriz con conexiones entre las caras y los elementos.
+    - `faces_nodes_conn`  : Matriz con conexiones nodales de las caras.
+    - `ofaces_bool`  : Matriz booleana que indica si una cara es externa.
+    - `ofaces_nodes_conn`  : Matriz con conexiones nodales de las caras externas.
+    - `nb_faces`  : Número de caras de la malla.
+    - `onodes_bool`  : Matriz booleana que indica si un nodo está en el borde de la malla.
 """
 function read_mesh(msh::Dict)
     # Crear estructura de malla
@@ -204,10 +169,12 @@ end
 
 
 
+* Function: `plot_mesh(mesh::Dict)`
+
 
 ```julia
 """
-    plot_mesh(mesh::Dict)
+## `plot_mesh(mesh::Dict)`
 
 La función `plot_mesh` recibe un diccionario `mesh` que representa una malla
 compuesta por nodos y elementos. 
@@ -215,32 +182,30 @@ compuesta por nodos y elementos.
 La función grafica la malla mediante la creación de una figura en la que se dibujan
 los nodos como puntos y los triángulos como líneas que unen los nodos
 
+## Argumentos
+- `mesh::Dict` es una estructura de datos con los datos de la malla. 
 
-# Argumentos
--`mesh` es una estructura de datos del tipo Dict{String, Any}.
-
-
-# Salida
-La función devuelve una figura que muestra la malla graficada.
+## Salida
+- La función devuelve una figura que muestra la malla graficada.
 """
 function plot_mesh(mesh::Dict)
     # extraer nodos y conectividad de elementos de la malla
-    nb_elems = mesh["nb_elems"]                  # número de elementos en la malla
+    nb_elems = mesh["nb_elems"]           # número de elementos en la malla
     nodes = mesh["nodes"]                 # matriz de coordenadas de nodos
     elems_nodes_conn = mesh["elems_nodes_conn"]  # matriz de conectividad de elementos
     onodes_bool = mesh["onodes_bool"]      # vector booleano que indica los nodos de contorno
     
-    # graficar los nodos como puntos y los triángulos como líneas que unen los nodos
-    p = plot()   # inicializar la figura de matplotlib
+    # graficar la malla
+    p = plot()   # inicializar la figura
     for k in 1:nb_elems
         # coordenadas x de los nodos del k-ésimo elemento
         x = nodes[elems_nodes_conn[k,:][1:3],1]
         # coordenadas y de los nodos del k-ésimo elemento
         y = nodes[elems_nodes_conn[k,:][1:3],2]  
-        # graficar los nodos del i-ésimo elemento
+        # graficar los lados del i-ésimo elemento
         plot!(x, y, color=:blue, legend=false )  
     end
-    # graficar los nodos de contorno de la malla
+    # graficar los nodos del contorno de la malla
     scatter!(nodes[onodes_bool,1],nodes[onodes_bool,2],
         color=:red, legend=false, aspect_ratio=:equal )  
     return p   # devolver la figura
@@ -251,6 +216,55 @@ end
 
 
     plot_mesh
+
+
+
+* Function: `get_h_global(mesh::Dict)`
+
+
+```julia
+"""
+## `get_h_global(mesh::Dict)`
+
+La función `get_h_global` recibe un diccionario `mesh` que representa una malla
+compuesta por nodos y elementos. 
+
+La función grafica la malla mediante la creación de una figura en la que se dibujan
+los nodos como puntos y los triángulos como líneas que unen los nodos
+
+## Argumentos
+- `mesh::Dict` es una estructura de datos con los datos de la malla. 
+
+## Salida
+- La función devuelve el parámetro `h` global de la malla
+"""
+function get_h_global(mesh::Dict)
+    # guardamos/renombramos variables importantes
+    h_global = 0.0
+    
+    # obtenemos la información de la malla
+    nb_elems = mesh["nb_elems"]           # número de elementos en la malla
+    nodes = mesh["nodes"]                 # matriz de coordenadas de nodos
+    elems_nodes_conn = mesh["elems_nodes_conn"]  # matriz de conectividad de elementos
+   
+    
+    for i = 1:nb_elems
+        # diferencia entre los puntos de cada cara
+        dface_1 = nodes[elems_nodes_conn[i,1],1:2] - nodes[elems_nodes_conn[i,2],1:2]
+        dface_2 = nodes[elems_nodes_conn[i,2],1:2] - nodes[elems_nodes_conn[i,3],1:2]
+        dface_3 = nodes[elems_nodes_conn[i,3],1:2] - nodes[elems_nodes_conn[i,1],1:2]
+        h_T = max(max(norm(dface_1), norm(dface_2)), norm(dface_3))
+        h_global = max(h_global, h_T)
+    end
+
+    return h_global
+end
+```
+
+
+
+
+    get_h_global
 
 
 
