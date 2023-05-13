@@ -49,10 +49,10 @@ Las funciones de forma locales son
 
 $$\theta_{K,i} = \psi_K ^{-1} \left( \hat{\theta_i} \right), 1 \leq i \leq n_{s h}  $$
 
-y el operador de interpolación local $$\mathcal{I}_K: V(K) \longmapsto P_K$$ está dado por
+y el operador de interpolación local $$\mathcal{I}_K: V(K) \longmapsto P_K$$ está dado por $$\mathcal{I}_K v =\sum_{i=1}^{n_{s h}} \sigma_{K,i}(v) \theta_{K,i}$$
 
 $$\mathcal{I}_K v =\sum_{i=1}^{n_{s h}} \sigma_{K,i}(v) \theta_{K,i}$$
-$$\mathcal{I}_K v =\sum_{i=1}^{n_{s h}} \sigma_{K,i}(v) \theta_{K,i}$$
+
 
 - Para el elemento finito de Lagrange:
     * $K$ es un simplex en $\mathbb{R}^d$
