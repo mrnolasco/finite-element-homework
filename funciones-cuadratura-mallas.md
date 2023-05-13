@@ -61,7 +61,7 @@ $$J_K : = \left[ z_1-z_0 \  \  \vert \ \ z_2-z_0 \right]$$ y $z_i$ el vector col
     \lambda_2\end{pmatrix} 
     $
     
-    $
+$$
     \hat{\xi}_l =  
     \lambda_0 \begin{array}{c} 0\\
     0\end{array} 
@@ -71,13 +71,13 @@ $$J_K : = \left[ z_1-z_0 \  \  \vert \ \ z_2-z_0 \right]$$ y $z_i$ el vector col
     1\end{array} 
     = \begin{array}{c} \lambda_1\\
     \lambda_2\end{array} 
-    $
+    $$
     
     
     
     * Sus coordenadas en el simplejo $K$ son: 
-    
-    $$ T_K(\hat{\xi}_l) = J_K \hat{\xi}_l + z_0   $$
+  
+ $$ T_K(\hat{\xi}_l) = J_K \hat{\xi}_l + z_0   $$
 
 * Function: `quadratures_triangle(n::Int)`
 
