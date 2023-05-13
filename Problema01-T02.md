@@ -37,10 +37,11 @@ Para $K \in \mathcal{T}_h$, la tripleta $\left\{K, P_K, \Sigma_K\right\}$ defini
 $$
 \begin{cases}
 K=T_K(\hat{K}) \\
-P_K=\left\{\psi_K^{-1}(\hat{p}) ; \ \widehat{p} \in \hat{P}\right\} ; \\
-\Sigma_K=\left\{\left\{\sigma_{K, i}\right\}_{1 \leq i \leq n_{s h}} ;\  \sigma_{K, i}(p)=\hat{\sigma}_i\left(\psi_K(p)\right), \ \forall p \in P_K\right\}
+P_K=\left\lbrace \psi_K^{-1}(\hat{p}) ; \ \widehat{p} \in \hat{P}\right\rbrace ; \\
+\Sigma_K=\left\lbrace \left\lbrace \sigma_{K, i}\right\rbrace_{1 \leq i \leq n_{s h}} ;\  \sigma_{K, i}(p)=\hat{\sigma}_i\left(\psi_K(p)\right), \ \forall p \in P_K\right\rbrace
 \end{cases}
 $$
+
 
 es un elemento finito. 
 
