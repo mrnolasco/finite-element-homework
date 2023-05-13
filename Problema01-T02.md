@@ -32,7 +32,7 @@ v = (x) -> cos(4*π*x[1])*(cos(4*π*x[2]))^2
 # Interpolador
 ## El Interpolador local
 
-Para $K \in \mathcal{T}_h$, la tripleta $\left\lbrace K, P_K, \Sigma_K\right\rbrace $ definida por
+Para $K \in \mathcal{T}_h$, la tripleta $\left\lbrace K, P_K, \Sigma_K \right\rbrace$ definida por
 
 $$
 \begin{cases}
