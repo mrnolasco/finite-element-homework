@@ -57,7 +57,7 @@ $$\mathcal{I_{\text{K}}} v =\sum_{i=1}^{n_{s h}} \sigma_{K,i}(v) \theta_{K,i}$$
 
 - Para el elemento finito de Lagrange:
     * $K$ es un simplex en $\mathbb{R}^d$
-    * $P_K=\mathbb{P__{\text{k}}}$, $n_{s h}=dim\left( \mathbb{P_{\text{k}}}\right), k\geq 1 $
+    * $P_K=\mathbb{P_{\text{k}}}$, $n_{s h}=dim\left( \mathbb{P_{\text{k}}}\right), k\geq 1 $
     * $\sigma_{K, i}(p)=p(x_i)$, para $\left\lbrace x_i \right\rbrace_{i=1}^{n_{sh}}$ los nodos.
         
         Usando las coordenadas baricéntricas: $(\lambda_0, \lambda_1 ,\ldots , \lambda_d)$
