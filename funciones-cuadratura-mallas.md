@@ -40,7 +40,7 @@ Observaciones:
 1. Sea $\hat{K} = \triangle OE_1E_2$ con nodos en $(0,0)$, $(1,0)$, $(0,1)$ y $K=\triangle Z_0Z_1Z_2 \in T_h$ un elemento de la malla. Entonces la transformación $T_K: \hat{K} \rightarrow K$ que lleva los vértices de $\hat{K}$ en los vértices de $K$ está dada por: 
 $$x=T_K(\hat{x}) = J_K \hat{x} + z_0 \quad \hat{x}\in \hat{K} $$
 Con 
-$$J_K : = \left[ z_1-z_0 \  \ | \begin{matrix} \ \\\ \end{matrix} \ z_2-z_0 \right]$$ y $z_i$ el vector columna con las coordenadas del punto $Z_i$
+$$J_K : = \left[ z_1-z_0 \  \  \vert \ \ z_2-z_0 \right]$$ y $z_i$ el vector columna con las coordenadas del punto $Z_i$
 
 2. Si $\hat{\xi}_l$, un punto de la cuadratura, tiene coordenadas baricéntricas $(\lambda_0: \lambda_1 :\lambda_2)$, entonces 
 
