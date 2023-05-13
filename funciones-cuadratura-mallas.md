@@ -7,7 +7,7 @@ $$\int_{\Omega} v(x) dx = \sum_{K\in T_h} \int_{K} v(x) dx$$
 Para calcular la integral sobre un elemento $K$, se utiliza un cambio de variable para transformar la integral sobre el triángulo $\hat{K}$, que es un triángulo de referencia, al triángulo $K$. Este cambio de variable implica una transformación afín $T_K$ y una multiplicación por el determinante del Jacobiano de la transformación:
 $$\int_{\Omega} v(x) dx = \sum_{K\in T_h} \int_{K} v(x) dx = \sum_{K\in T_h} \int_{\hat{K}}v\circ T_K(\hat{x}) \left\vert det\left(J_K\right) \right\vert d\hat{x}$$
 donde $$x=T_K\left(\hat{x}\right) $$ y es tal que 
-$$ K = T_K \left( \hat{K} \right) $$
+$$ K=T_K\left(\hat{K}\right) $$
 
 Ahora para aproximar la integral sobre el triángulo de referencia $\hat{K}$, se utiliza una fórmula de cuadratura que involucra un conjunto de puntos de cuadratura y pesos, que dependen del orden de la precisión deseada:
 $$\int_{\hat{K}}v\circ T_K(\hat{x})  d\hat{x} \approx  \sum_{l=1}^{l_q}\omega_l\ v\circ T_K(\hat{\xi}_l)   $$
