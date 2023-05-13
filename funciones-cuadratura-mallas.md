@@ -39,11 +39,13 @@ Ern, A., & Guermond, J. L. (2019). Theory and Practice of Finite Elements. Sprin
 Observaciones:
 1. Sea $\hat{K} = \triangle OE_1E_2$ con nodos en $(0,0)$, $(1,0)$, $(0,1)$ y $K=\triangle Z_0Z_1Z_2 \in T_h$ un elemento de la malla. Entonces la transformación $T_K: \hat{K} \rightarrow K$ que lleva los vértices de $\hat{K}$ en los vértices de $K$ está dada por: 
 $$x=T_K(\hat{x}) = J_K \hat{x} + z_0 \quad \hat{x}\in \hat{K} $$
-Con $J_K=\left[ z_1-z_0 \  \ | \begin{matrix} \ \\ \ \end{matrix} \ z_2-z_0 \right]$ y $z_i$ el vector columna con las coordenadas del punto $Z_i$
+Con 
+$$J_K : = \left[ z_1-z_0 \  \ | \begin{matrix} \ \\ \ \end{matrix} \ z_2-z_0 \right]$$ y $z_i$ el vector columna con las coordenadas del punto $Z_i$
 
 2. Si $\hat{\xi}_l$, un punto de la cuadratura, tiene coordenadas baricéntricas $(\lambda_0: \lambda_1 :\lambda_2)$, entonces 
 
-    - Sus coordenadas en el simplejo de referencia $\hat{K}$ son: $$\hat{\xi}_l = \lambda_0 \begin{pmatrix} 0\\ 0\end{pmatrix} +\lambda_1 \begin{pmatrix}1\\ 0\end{pmatrix} + \lambda_2 \begin{pmatrix} 0\\ 1\end{pmatrix} = \begin{pmatrix}\lambda_1\\ \lambda_2\end{pmatrix}  $$
+    - Sus coordenadas en el simplejo de referencia $\hat{K}$ son: 
+    $$\hat{\xi}_l = \lambda_0 \begin{pmatrix} 0\\ 0\end{pmatrix} +\lambda_1 \begin{pmatrix}1\\ 0\end{pmatrix} + \lambda_2 \begin{pmatrix} 0\\ 1\end{pmatrix} = \begin{pmatrix}\lambda_1\\ \lambda_2\end{pmatrix}  $$
     - Sus coordenadas en el simplejo $K$ son: $$ T_K(\hat{\xi}_l) = J_K \hat{\xi}_l + z_0   $$
 
 * Function: `quadratures_triangle(n::Int)`
