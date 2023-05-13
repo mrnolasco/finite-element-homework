@@ -49,7 +49,7 @@ $$J_K : = \left[ z_1-z_0 \  \  \vert \ \ z_2-z_0 \right]$$ y $z_i$ el vector col
 
      * Sus coordenadas en el simplejo de referencia $\hat{K}$ son: 
     
-    $$
+    $
     \hat{\xi}_l =  
     \lambda_0 \begin{pmatrix} 0\\
     0\end{pmatrix} 
@@ -59,9 +59,9 @@ $$J_K : = \left[ z_1-z_0 \  \  \vert \ \ z_2-z_0 \right]$$ y $z_i$ el vector col
     1\end{pmatrix} 
     = \begin{pmatrix}\lambda_1\\
     \lambda_2\end{pmatrix} 
-    $$
+    $
     
-    $$
+    $
     \hat{\xi}_l =  
     \lambda_0 \begin{array}{c} 0\\
     0\end{array} 
@@ -71,7 +71,7 @@ $$J_K : = \left[ z_1-z_0 \  \  \vert \ \ z_2-z_0 \right]$$ y $z_i$ el vector col
     1\end{array} 
     = \begin{array}{c} \lambda_1\\
     \lambda_2\end{array} 
-    $$
+    $
     
     
     
