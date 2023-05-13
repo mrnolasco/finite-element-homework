@@ -33,13 +33,15 @@ v = (x) -> cos(4*π*x[1])*(cos(4*π*x[2]))^2
 ## El Interpolador local
 
 Para $K \in \mathcal{T}_h$, la tripleta $\left\{K, P_K, \Sigma_K\right\}$ definida por
+
 $$
-\left\{\begin{array}{l}
+\begin{cases}
 K=T_K(\hat{K}) \\
 P_K=\left\{\psi_K^{-1}(\hat{p}) ; \ \widehat{p} \in \hat{P}\right\} ; \\
 \Sigma_K=\left\{\left\{\sigma_{K, i}\right\}_{1 \leq i \leq n_{s h}} ;\  \sigma_{K, i}(p)=\hat{\sigma}_i\left(\psi_K(p)\right), \ \forall p \in P_K\right\}
-\end{array}\right.
+\end{cases}
 $$
+
 es un elemento finito. 
 
 Las funciones de forma locales son $$\theta_{K, i}=\psi_K^{-1}\left(\hat{\theta}_i\right), 1 \leq i \leq n_{\mathrm{sh}}$$ y el operador de interpolación local $$\mathcal{I}_K: V(K) \longmapsto P_K$$ está dado por
