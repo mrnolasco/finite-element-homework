@@ -8,7 +8,7 @@
 
 ```julia
 # Cargamos paquetes 
-using Plots, DataFrames, CSV, LinearAlgebra, Combinatorics, PrettyTables
+using CSV, DataFrames, Plots, Combinatorics, LinearAlgebra, PrettyTables
 ```
 
 # Funciones para mallas
