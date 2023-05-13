@@ -47,8 +47,6 @@ es un elemento finito.
 
 Las funciones de forma locales son 
 
-$$ \theta_{K,i} = \psi_K^{-1} \left( \hat{\theta}_i \right), 1 \leq i \leq n_{sh} $$
-
 $$\theta_{K,i} = \psi_K ^{-1} \left( \hat{\theta_i} \right), 1 \leq i \leq n_{s h}  $$
 
 y el operador de interpolación local $$\mathcal{I}_K: V(K) \longmapsto P_K$$ está dado por
