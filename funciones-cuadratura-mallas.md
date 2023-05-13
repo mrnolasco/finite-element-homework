@@ -1,16 +1,23 @@
-# Funciones para cálculo de cuadratura en una malla de triángulos
+# Funciones de cuadratura en una malla de triángulos
 
-La integral de una función escalar $v:\mathbb{R}^2 \rightarrow  \mathbb{R}$ sobre una región mallada $\Omega\subset \mathbb{R}^2 $, se puede calcular mediante la suma de integrales sobre cada elemento $K$ de una malla $T_h$.
+La integral de una función escalar $v:\mathbb{R}^2 \rightarrow  \mathbb{R}$ sobre una región mallada $\Omega\subset \mathbb{R}^2 $, se puede calcular mediante la suma de integrales sobre cada elemento $K$ de una malla $T_h$:
 
-$$\int_{\Omega} v(x,y) dxdy = \sum_{K\in T_h} \int_{K} v(x,y) dxdy = \sum_{K\in T_h} \int_{\hat{K}}v\left( T_k(\hat{x},\hat{y}) \right) \left\vert det\left(J_K\right) \right\vert d\hat{x}d\hat{y}$$
+$$\int_{\Omega} v(x) dx = \sum_{K\in T_h} \int_{K} v(x) dx$$
 
-Para calcular la integral sobre un elemento $K$, se utiliza un cambio de variable para transformar la integral sobre el triángulo $\hat{K}$, que es un triángulo de referencia, al triángulo $K$. Este cambio de variable implica una transformación afín $T_K$ y una multiplicación por el determinante del Jacobiano de la transformación.
+Para calcular la integral sobre un elemento $K$, se utiliza un cambio de variable para transformar la integral sobre el triángulo $\hat{K}$, que es un triángulo de referencia, al triángulo $K$. Este cambio de variable implica una transformación afín $T_K$ y una multiplicación por el determinante del Jacobiano de la transformación:
+$$\int_{\Omega} v(x) dx = \sum_{K\in T_h} \int_{K} v(x) dx = \sum_{K\in T_h} \int_{\hat{K}}v\circ T_K(\hat{x}) \left\vert det\left(J_K\right) \right\vert d\hat{x}$$
+donde $$x=T_K\left(\hat{x}\right) $$ y es tal que $$ K=T_K\left(\hat{K}\right) $$
 
-$$\int_{\hat{K}}v\left( T_k(\hat{x},\hat{y}) \right) d\hat{x}d\hat{y} \approx  \sum_{l=1}^{l_q}\omega_l\ v\left( T_k(\hat{\xi}_l,\hat{\eta}_l) \right)  $$
+Ahora para aproximar la integral sobre el triángulo de referencia $\hat{K}$, se utiliza una fórmula de cuadratura que involucra un conjunto de puntos de cuadratura y pesos, que dependen del orden de la precisión deseada:
+$$\int_{\hat{K}}v\circ T_K(\hat{x})  d\hat{x} \approx  \sum_{l=1}^{l_q}\omega_l\ v\circ T_K(\hat{\xi}_l)   $$
 
-Para aproximar la integral sobre el triángulo de referencia $\hat{K}$, se utiliza una fórmula de cuadratura que involucra un conjunto de puntos de cuadratura y pesos, que dependen del orden de la precisión deseada.
+$$\therefore
+\int_{\Omega} v(x) dx \approx \sum_{K\in T_h} \left(\sum_{l=1}^{l_q}\omega_l\ v\circ T_K(\hat{\xi}_l) \right)    \left\vert det\left(J_K\right) \right\vert 
+$$
 
-En la siguiente tabla se muestran diferentes conjuntos de puntos de cuadratura y pesos para distintos grados de precisión. Los puntos de cuadratura se expresan en coordenadas baricéntricas, que son convenientes para trabajar con triángulos. La variable $S$ es la superficie del triángulo de referencia $\hat{K}$.
+En la siguiente tabla se muestran diferentes conjuntos de puntos de cuadratura y pesos para distintos grados de precisión. 
+
+Los puntos de cuadratura se expresan en coordenadas baricéntricas, que son convenientes para trabajar con triángulos. La variable $S$ es la superficie del triángulo de referencia $\hat{K}$.
 
 $$
 \begin{array}{ccc|cc|c}
@@ -29,33 +36,48 @@ $$
 
 Ern, A., & Guermond, J. L. (2019). Theory and Practice of Finite Elements. Springer. Chapter 8. Quadratures, Assembling, and Storage. Table 8.2. Nodes and weights for quadratures on a triangle of area S, p 360.
 
+Observaciones:
+1. Sea $\hat{K} = \triangle OE_1E_2$ con nodos en $(0,0)$, $(1,0)$, $(0,1)$ y $K=\triangle Z_0Z_1Z_2 \in T_h$ un elemento de la malla. Entonces la transformación $T_K: \hat{K} \rightarrow K$ que lleva los vértices de $\hat{K}$ en los vértices de $K$ está dada por: 
+$$x=T_K(\hat{x}) = J_K \hat{x} + z_0 \quad \hat{x}\in \hat{K} $$
+Con $J_K=\left[ z_1-z_0 \  \ | \begin{matrix} \ \\ \ \end{matrix} \ z_2-z_0 \right]$ y $z_i$ el vector columna con las coordenadas del punto $Z_i$
+
+2. Si $\hat{\xi}_l$, un punto de la cuadratura, tiene coordenadas baricéntricas $(\lambda_0: \lambda_1 :\lambda_2)$, entonces 
+
+    - Sus coordenadas en el simplejo de referencia $\hat{K}$ son: $$\hat{\xi}_l = \lambda_0 \begin{pmatrix} 0\\ 0\end{pmatrix} +\lambda_1 \begin{pmatrix}1\\ 0\end{pmatrix} + \lambda_2 \begin{pmatrix} 0\\ 1\end{pmatrix} = \begin{pmatrix}\lambda_1\\ \lambda_2\end{pmatrix}  $$
+    - Sus coordenadas en el simplejo $K$ son: $$ T_K(\hat{\xi}_l) = J_K \hat{\xi}_l + z_0   $$
+
+* Function: `quadratures_triangle(n::Int)`
+
 
 ```julia
 """
-    quadratures_triangle(n::Int)
+## `quadratures_triangle(n::Int)`
 
-La función `quadratures_triangle(n)` devuelve un diccionario que contiene los nodos
-y pesos para una cuadratura en un triángulo de área `S`.
+La función `quadratures_triangle` devuelve un diccionario que contiene los nodos
+y pesos para una cuadratura en un triángulo de área uno.
 
-# Argumentos:
+## Argumentos:
 - `n` : Número de la cuadratura a utilizar. Debe ser un entero en el rango `1` a `5`.
 
-# Salida:
-    Un diccionario que contiene los siguientes elementos:
-
-- `k_q`: Orden de la función polinómica exacta que se integra.
-- `l_q`: Número de puntos en la cuadratura.
-- `bar_coo_q`: Coordenadas baricéntricas de los puntos de cuadratura.
-- `multi_q`: Multiplicidad de los puntos de cuadratura.
-- `ω_l`: Pesos de los puntos de cuadratura.
+## Salida:
+- Un diccionario que contiene los siguientes elementos:
+    - `k`: Orden de la función polinómica exacta que se integra.
+    - `l`: Número de puntos en la cuadratura.
+    - `bary_coord`: Coordenadas baricéntricas de los puntos de cuadratura.
+    - `multi`: Multiplicidad de los puntos de cuadratura.
+    - `ω`: Pesos de los puntos de cuadratura.
 """
 function quadratures_triangle(n::Int)
     # Definir las variables
-    k_q = [1 2 2 3 3][n]  # grado máximo de los polinomios que se pueden integrar exactamente
-    l_q = [1 3 3 4 7][n]  # número de puntos de cuadratura en la regla n
     
+    # grado máximo de los polinomios que se pueden integrar exactamente
+    K = [1 2 2 3 3][n]  
+
+    # número de puntos de cuadratura en la regla n
+    L = [1 3 3 4 7][n]  
+
     # Coordenadas baricéntricas de los puntos de cuadratura. 
-    barycentric_coord = Dict( "1" => [1//3 1//3 1//3],
+    Barycentric_Coord = Dict( "1" => [1//3 1//3 1//3],
                               "2" =>  [1//6 1//6 2//3],
                               "3" =>  [1//2 1//2 0//1],
                               "4" => [1//3 1//3 1//3; 1//5 1//5 3//5],
@@ -69,21 +91,27 @@ function quadratures_triangle(n::Int)
                          "5" => [1 3 3])
     
     # Pesos de los puntos de cuadratura
-    Weights_q = Dict( "1" => [1],
-                "2" => [1//3],
-                "3" => [1//3],
-                "4" => [-9//16 25//48],
-                "5" => [9//20 2//15 1//20])
+    Weights = Dict( "1" => [1],
+                    "2" => [1//3],
+                    "3" => [1//3],
+                    "4" => [-9//16 25//48],
+                    "5" => [9//20 2//15 1//20])
+    
     # Crear y retornar el diccionario
-    bar_coo_q = barycentric_coord[string(n)]  # coordenadas baricéntricas de los puntos de cuadratura
-    multi_q = Multiplicity[string(n)]  # multiplicidades de los puntos de cuadratura
-    ω_l = Weights_q[string(n)]  # pesos de los puntos de cuadratura
+        # coordenadas baricéntricas de los puntos de cuadratura
+        bary_coord = Barycentric_Coord[string(n)]
 
-    return Dict("k_q" => k_q, 
-                "l_q" => l_q, 
-                "bar_coo_q" => bar_coo_q, 
-                "multi_q" => multi_q, 
-                "ω_l" => ω_l)
+        # multiplicidades de los puntos de cuadratura
+        multi = Multiplicity[string(n)] 
+        
+        # pesos de los puntos de cuadratura
+        ω = Weights[string(n)]  
+
+    return Dict("k" => K, 
+                "l" => L, 
+                "bary_coord" => bary_coord, 
+                "multi" => multi, 
+                "ω" => ω)
 end
 ```
 
@@ -94,31 +122,48 @@ end
 
 
 
+* Function: `gauss_points(bary_coord::Array, multi::Array, weights::Array)`
+
 
 ```julia
-function gauss_points(coord, multiplicity, weights)
-    # Obtener las dimensiones de la matriz coord.
-    n_points, n_dim = size(coord)
-    n_q = sum(multiplicity)
+"""
+## `gauss_points(bary_coord::Array, multi::Array, weights::Array)`
+
+La función `gauss_points(bary_coord, multi, weights)` calcula los puntos 
+y pesos de Gauss para la cuadratura en un triángulo.
+
+## Argumentos:
+- `coord`: matriz que contiene las triadas baricéntricas de la cuadratura. 
+- `multi`: vector que especifica la multiplicidad de cada triada baricéntrica.
+- `weights`: vector que especifica los pesos de cada triada baricéntrica.
+
+## Salida:
+- `gauss_coord`: matriz que contiene las coordenadas baricéntricas de los nodos de Gauss.
+- `gauss_weights`: vector que contiene los pesos correspondientes a los nodos de Gauss.
+"""
+function gauss_points(bary_coord::Array, multi::Array, weights::Array)
+    # Obtener las dimensiones de la matriz bary_coord.
+    n_points, n_dim = size(bary_coord)
+    n_q = sum(multi)
 
     # Crear matrices vacías para almacenar los puntos y pesos de Gauss.
-    gauss_coord = zeros(Float64, n_dim, n_q)
-    gauss_weights = zeros(Float64, n_q)
+    gauss_coord = zeros(Rational{Int64}, n_dim, n_q)
+    gauss_weights = zeros(Rational{Int64}, n_q)
 
     idx_start = 1
     for i in 1:n_points
         # Encontrar todas las permutaciones únicas de los nodos de la triada actual.
-        perms = unique(permutations(coord[i,:]))
+        perms = unique(permutations(bary_coord[i,:]))
             
         # Crear una matriz para almacenar los puntos de Gauss para esta triada.
-        sub_coord = zeros(Rational{Int64}, n_dim, multiplicity[i])
+        sub_coord = zeros(Rational{Int64}, n_dim, multi[i])
         
         # Generar puntos de Gauss para esta barra.
-        for j in 1:multiplicity[i]
-            sub_coord[:,j] = collect(perms[j])
+        for j in 1:multi[i]
+            sub_coord[:,j] = perms[j]
         end
         
-        idx_end = idx_start + multiplicity[i] - 1
+        idx_end = idx_start + multi[i] - 1
         
         # Agregar los puntos de Gauss para esta triada a la matriz gauss_coord.
         gauss_coord[:,idx_start:idx_end] = sub_coord
@@ -135,112 +180,35 @@ end
 
 
 
-    gauss_points (generic function with 1 method)
+    gauss_points
 
 
 
-### Integral de una función dada una malla y una regla de cuadratura:
+## Integral de una función dada una malla y una regla de cuadratura:
 
-$$
-\int_{\Omega} v(x,y) dxdy 
-= \sum_{K\in T_h} \int_{K} v(x,y) dxdy
-= \sum_{K\in T_h} \int_{\hat{K}}v\left( T_k(\hat{x},\hat{y}) \right) \left\vert det\left(J_K\right) \right\vert d\hat{x}d\hat{y}
-= \sum_{K\in T_h} \left(\sum_{l=1}^{l_q}\omega_l\ v\left( T_K(\hat{\xi}_l,\hat{\eta}_l) \right)   \right) \left\vert det\left(J_K\right) \right\vert 
-$$
-
-Sea $\hat{K} = \triangle OE_1E_2$ con nodos en el origen y los puntos $(1,0)$, $(0,1)$, entonces las coordenadas $(\hat{\xi}, \hat{\eta})$ en términos de las coordenadas baricéntricas $(\lambda_0: \lambda_1 :\lambda_2)$ son:
-
-$$(\hat{\xi},\hat{\eta}) = \lambda_0 (0,0) +\lambda_1 (1,0) + \lambda_2 (0,1) = (\lambda_1,\lambda_2)  $$
-
-Además si $K=\triangle Z_0Z_1Z_2 \in T_h$ es un elemento de la malla $K=\triangle Z_0Z_1Z_2$ la transformación $T_K: \hat{K} \rightarrow K$ que lleva los vértices de $\hat{K}$ en los vértices de $K$ está dada por:
-
-$$
-T_K(\hat{\xi},\hat{\eta}) = \left[ z_1-z_0 \  \ | \begin{matrix} \ \\\ \ \end{matrix} \ z_2-z_0 \right] \left(\begin{matrix} \hat{\xi} \\\ \hat{\eta} \end{matrix}\right) + z_0
-$$
-
-Con $z_i$ el vector columna con las coordenadas del punto $Z_i$
+* Function: `quadrature_triangle_loc(f::Function, points::Matrix, g_points::Matrix, w_points::Vector)`
 
 
 ```julia
 """
-integrate_f_mesh(f::Function, mesh::Dict, n::Int)
+## `quadrature_triangle_loc(f::Function, points::Matrix, g_points::Matrix, w_points::Vector)`
 
-Aproxima la integral de la función f en una malla triangular usando cuadratura Gaussiana.
+La función `cuadratura_triang_loc` calcula la cuadratura de una función en un triángulo
+definido por los nodos de entrada usando el método de Gauss-Legendre.
 
-# Argumentos
-- `f`: función a integrar
-- `mesh`: diccionario que contiene la información de la malla. Se espera que tenga las siguientes llaves:
-  - `"nb_elems"`: número de elementos en la malla
-  - `"nodes"`: matriz de coordenadas de los nodos
-  - `"elems_nodes_conn"`: matriz de conectividad de los nodos de los elementos
-- `n` : Número de la cuadratura a utilizar. Debe ser un entero en el rango `1` a `5`.
+## Argumentos
+- `f`: Función a integrar
+- `points`: Matriz de coordenadas globales de nodos de cuadratura.
+            Cada columna corresponde a un nodo de cuadratura en el triángulo de la malla.
+- `g_points`: Matriz de coordenadas locales de nodos de cuadratura.
+            Cada columna corresponde a un nodo de cuadratura en el triángulo de referencia.
+- `w_points`: Vector que contiene los pesos correspondientes a los nodos de la cuadratura.
 
-# Salida
-- `int_glob`: valor de la integral calculada
-
-"""
-function integrate_f_mesh(f::Function, mesh::Dict, n::Int)
-    # extraer nodos y conectividad de elementos de la malla
-    nb_elems = mesh["nb_elems"]           # número de elementos en la malla
-    nodes = mesh["nodes"]                 # matriz de coordenadas de nodos
-    elems_nodes_conn = mesh["elems_nodes_conn"]  # matriz de conectividad de elementos
-    
-    # Generación de puntos de cuadratura
-    quad = quadratures_triangle(n)
-        ω_l = quad["ω_l"]
-        bar_coo_q = quad["bar_coo_q"]
-        multi_q = quad["multi_q"]
-    g_points, w_points = gauss_points(bar_coo_q, multi_q, ω_l)
-        # Seleccionar los dos primeros puntos de la matriz g_points como gpoints.
-        g_points = g_points[2:3,:]
-
-    int_glob = 0.0
-    # Cálculo de la integral global
-    for k in 1:nb_elems
-        # Extracción de nodos y conectividad de elementos
-        elem_nodes = elems_nodes_conn[k, 1:3] # coordenadas de los nodos del k-ésimo elemento
-        q = collect(nodes[elem_nodes, :]')
-        Jk = q[:,2:end] .- q[:,1]
-        points = Jk * g_points .+ q[:,1]
-    
-        # Cálculo de la integral local
-        int_loc = cuadratura_triang(f, points, g_points,w_points)*abs(det(Jk))
-        int_glob += int_loc
-    end
-    return int_glob
-end
-```
-
-
-
-
-    integrate_f_mesh
-
-
-
-
-```julia
-"""
-cuadratura_triang(f, points, g_points, w_points)
-
-Calcula la cuadratura de una función en un triángulo definido por los puntos 
-de entrada usando el método de Gauss-Legendre.
-
-# Argumentos
-- `f::Function`: Función a integrar
-- `points::Matrix`: Matriz de coordenadas de los puntos del triángulo. 
-                    La matriz debe ser de tamaño (2,3) donde 
-                    la primera fila corresponde a las coordenadas `x` de los puntos 
-                    y la segunda fila a las coordenadas `y`.
-- `g_points::Matrix`: Matriz de puntos de cuadratura. Cada columna corresponde a 
-                    un punto de cuadratura en el triángulo de referencia.
-- `w_points::Vector`: Vector de pesos de cuadratura.
-
-# Salida
-- `int_loc::Float64`: Valor de la integral de `f` en el triángulo definido por `points`.
+## Salida
+- `int_loc`: Valor de la integral de `f` en el triángulo.
 
 """
-function cuadratura_triang(f, points, g_points, w_points)
+function quadrature_triangle_loc(f, points, g_points, w_points)
 # Evaluación de la función en los puntos de cuadratura
     fval = [f(points[:,i]) for i in 1:size(points,2)]
     
@@ -253,7 +221,68 @@ end
 
 
 
-    cuadratura_triang
+    quadrature_triangle_loc
+
+
+
+* Function: `integrate_f_mesh(f::Function, mesh::Dict, n::Int)`
+
+
+```julia
+"""
+## `integrate_f_mesh(f::Function, mesh::Dict, n::Int)`
+
+Aproxima la integral de la función `f` en una malla triangular usando cuadratura Gaussiana.
+
+## Argumentos
+- `f`: función a integrar
+- `mesh`: diccionario que contiene la información de la malla con las siguientes llaves:
+  - `"nb_elems"`: número de elementos en la malla
+  - `"nodes"`: matriz de coordenadas de los nodos
+  - `"elems_nodes_conn"`: matriz de conectividad de los nodos de los elementos
+- `n` : Número de la cuadratura a utilizar. Debe ser un entero en el rango `1` a `5`.
+
+## Salida
+- `int_glob`: aproximación al valor de la integral de `f`
+
+"""
+function integrate_f_mesh(f::Function, mesh::Dict, n::Int)
+    # extraer nodos y conectividad de elementos de la malla
+    nb_elems = mesh["nb_elems"]           # número de elementos en la malla
+    nodes = mesh["nodes"]                 # matriz de coordenadas de nodos
+    elems_nodes_conn = mesh["elems_nodes_conn"]  # matriz de conectividad de elementos
+    
+    # Generación de los puntos de la cuadratura
+    quad = quadratures_triangle(n)
+        ωl = quad["ω"]
+        bary_coord = quad["bary_coord"]
+        multi = quad["multi"]
+    g_points, w_points  = gauss_points(bary_coord, multi, ωl)
+    
+    # Obtener las coordenadas locales de los puntos de la cuadratura
+    g_points = g_points[2:3,:]
+
+    # Cálculo de la integral global
+    int_glob = 0.0
+    for k in 1:nb_elems
+        # Extracción de nodos y conectividad de elementos
+        elem_nodes = elems_nodes_conn[k, 1:3] # coordenadas de los nodos del k-ésimo elemento
+        q = collect(nodes[elem_nodes, :]')
+        Jk = q[:,2:end] .- q[:,1]
+        points = Jk * g_points .+ q[:,1]
+    
+        # Cálculo de la integral local
+        int_loc = quadrature_triangle_loc(f, points, g_points,w_points)*abs(det(Jk))
+        int_glob += int_loc
+    end
+    return int_glob
+end
+```
+
+
+
+
+    integrate_f_mesh
 
 
 
@@ -268,7 +297,7 @@ $$\int_0^1 \int_0^1 x^4 \sin(x) \cos(y) dx dy = -20 \sin^2(1) + 24 \sin(1) - \fr
 
 ```julia
 # Definimos la función
-f(x) = x[1]^4*sin(x[1])* cos(x[2]) # 0.12340199555116126961024429
+f(x) = x[1]^4*sin(x[1])* cos(x[2]) 
 
 # Definimos la malla a utilizar
 meshf = MSH[6]
@@ -310,5 +339,4 @@ abs(cuadf-intf)
 
 
     1.3937971610200606e-10
-
 
