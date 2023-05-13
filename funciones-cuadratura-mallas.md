@@ -49,7 +49,7 @@ $$J_K : = \left[ z_1-z_0 \  \  \vert \ \ z_2-z_0 \right]$$ y $z_i$ el vector col
 
     - Sus coordenadas en el simplejo de referencia $\hat{K}$ son: 
     
-    - $$ \hat{\xi}_l = \lambda_0 \textbf{0} +\lambda_1 \textbf{e_1} + \lambda_2 \textbf{e_2} = \begin{pmatrix}\lambda_1 \\ \lambda_2\end{pmatrix}  $$
+    - $$ \hat{\xi}_l = \lambda_0 \textbf{0} +\lambda_1 \textbf{e_1} + \lambda_2 \textbf{e_2} = v  $$
     - Sus coordenadas en el simplejo $K$ son: $$ T_K(\hat{\xi}_l) = J_K \hat{\xi}_l + z_0   $$
 
 * Function: `quadratures_triangle(n::Int)`
