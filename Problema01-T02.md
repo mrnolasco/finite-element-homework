@@ -102,13 +102,13 @@ Para nuestro problema $d=2$, tenemos
 
 - Elementos finitos de Lagrange de primer orden
 
-$$\theta = \begin{pmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \end{pmatrix}= \begin{pmatrix} \lambda_0 \\ \lambda_1 \\ \lambda_2 \end{pmatrix} $$
+$$\theta = \begin{pmatrix} \theta_0 \\\ \theta_1 \\\ \theta_2 \end{pmatrix}= \begin{pmatrix} \lambda_0 \\\ \lambda_1 \\\ \lambda_2 \end{pmatrix} $$
 - Elementos finitos de Crouzeix–Raviart de primer orden
 
-$$\theta = \begin{pmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \end{pmatrix}= \begin{pmatrix} 1-2\lambda_0 \\ 1-2\lambda_1 \\ 1-2\lambda_2 \end{pmatrix} $$
+$$\theta = \begin{pmatrix} \theta_0 \\\ \theta_1 \\\ \theta_2 \end{pmatrix}= \begin{pmatrix} 1-2\lambda_0 \\\ 1-2\lambda_1 \\\ 1-2\lambda_2 \end{pmatrix} $$
 - Elementos finitos de Lagrange de segundo orden
 
-$$\theta = \begin{pmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \\ \theta_3 \\ \theta_4 \\ \theta_5 \end{pmatrix}= \begin{pmatrix} \lambda_0(2\lambda_0-1) \\ \lambda_1(2\lambda_1-1)\\ \lambda_2(2\lambda_2-1) \\ 4\lambda_0\lambda_1 \\ 4\lambda_1\lambda_2 \\ 4\lambda_0\lambda_2 \end{pmatrix} $$
+$$\theta = \begin{pmatrix} \theta_0 \\\ \theta_1 \\\ \theta_2 \\\ \theta_3 \\\ \theta_4 \\\ \theta_5 \end{pmatrix}= \begin{pmatrix} \lambda_0(2\lambda_0-1) \\\ \lambda_1(2\lambda_1-1)\\\ \lambda_2(2\lambda_2-1) \\\ 4\lambda_0\lambda_1 \\\ 4\lambda_1\lambda_2 \\\ 4\lambda_0\lambda_2 \end{pmatrix} $$
 
 * Function: `get_θ_functions(ξ::Vector, ef::Int)`
 
