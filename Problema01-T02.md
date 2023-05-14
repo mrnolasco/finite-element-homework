@@ -85,7 +85,9 @@ P_K\quad \stackrel{\psi_K}{\longrightarrow}\quad \hat{P} \quad
 $$
 
 con 
+
 $$\mathcal{I}_{\hat{K}}: V(\hat{K}) \longmapsto \hat{P}$$ 
+
 $$
 \mathcal{I}_{\hat{K}} \hat{v} =\sum_{i=1}^{n_{\mathrm{sh}}} \hat{\sigma}_{i}(\hat{v}) \hat{\theta}_i
 $$ el operador de interpolación de referencia.
