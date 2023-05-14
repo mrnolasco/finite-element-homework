@@ -78,8 +78,8 @@ Como el siguiente diagrama conmuta:
 
 $$
 \begin{array}{cc}
-V(K) \stackrel{\psi_K}{\longrightarrow} V(\hat{K}) \quad \\
-\downarrow{\mathcal{I}_K} \quad  \quad \quad \downarrow \mathcal{I}_{\hat{K}} \\
+V(K) \stackrel{\psi_K}{\longrightarrow} V(\hat{K}) \quad \\\
+\downarrow{\mathcal{I}_K} \quad  \quad \quad \downarrow \mathcal{I}_{\hat{K}} \\\
 P_K\quad \stackrel{\psi_K}{\longrightarrow}\quad \hat{P} \quad
 \end{array}
 $$
