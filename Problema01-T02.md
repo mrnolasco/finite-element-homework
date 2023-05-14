@@ -75,6 +75,7 @@ $$\theta = \begin{cases}  \lambda_i \left( 2\lambda_i-1 \right) & \quad 0\leq i 
 
 
 Como el siguiente diagrama conmuta:
+
 $$
 \begin{array}{cc}
 V(K) \stackrel{\psi_K}{\longrightarrow} V(\hat{K}) \quad \\
