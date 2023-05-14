@@ -62,7 +62,8 @@ $$\mathcal{I_{\text{K}}} v =\sum_{i=1}^{n_{s h}} \sigma_{K,i}(v) \theta_{K,i}$$
         
         Usando las coordenadas baricéntricas: $(\lambda_0, \lambda_1 ,\ldots , \lambda_d)$
         - Si $k=1$ las funciones de forma son: $$\theta_i = \lambda_i, \quad 0\leq i \leq d$$
-        - Si $k=2$ las funciones de forma son: $$\theta = \begin{cases}  \lambda_i \left(2\lambda_i-1\right) & \quad 0\leq i \leq d \\   4\lambda_i\lambda_j & \quad 0\leq i < j \leq   d \\  \end{cases}$$
+        - Si $k=2$ las funciones de forma son: 
+        $$\theta = \begin{cases}  \lambda_i \left(2\lambda_i-1\right) & \quad 0\leq i \leq d \\   4\lambda_i\lambda_j & \quad 0\leq i < j \leq   d  \end{cases}$$
 - Para el elemento finito de Crouzeix-Raviart:
     * $K$ es un simplex en $\mathbb{R}^d$
     * $P_K=\mathbb{P}_1$
