@@ -89,7 +89,7 @@ con
 $$\mathcal{I}_{\hat{K}}: V(\hat{K}) \longmapsto \hat{P}$$ 
 
 \begin{align*}
-\mathcal{I_{\text{\hat{K}}}} \hat{v} =\sum_{i=1}^{n_{\mathrm{sh}}} \hat{\sigma_{\text{i}}}(\hat{v}) \hat{\theta_{\text{i}}}
+\mathcal{I_{\text{\hat{K}}}} \hat{v} =\sum_{i=1}^{n_{\mathrm{sh}}} \hat{\sigma_{i}}(\hat{v}) \hat{\theta_{i}}
 \end{align*} 
 
 el operador de interpolación de referencia.
