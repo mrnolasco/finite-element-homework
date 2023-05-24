@@ -48,7 +48,9 @@ y $z_i$ el vector columna con las coordenadas del punto $Z_i$
 
 Sus coordenadas en el simplejo de referencia $\hat{K}$ son: 
 
-$$ \hat{\xi}_l = \lambda_0 \begin{pmatrix} 0\\\ 0\end{pmatrix} +\lambda_1 \begin{pmatrix}1\\\ 0\end{pmatrix} + \lambda_2 \begin{pmatrix} 0\\\ 1\end{pmatrix} = \begin{pmatrix}\lambda_1\\\ \lambda_2\end{pmatrix} $$ y sus coordenadas en el simplejo $K$ son: 
+$$ \hat{\xi}_l = \lambda_0 \begin{pmatrix} 0\\\ 0\end{pmatrix} +\lambda_1 \begin{pmatrix}1\\\ 0\end{pmatrix} + \lambda_2 \begin{pmatrix} 0\\\ 1\end{pmatrix} = \begin{pmatrix}\lambda_1\\\ \lambda_2\end{pmatrix} $$ 
+
+y sus coordenadas en el simplejo $K$ son: 
 
 $$ T_K(\hat{\xi}_l) = J_K \hat{\xi}_l + z_0   $$
 
