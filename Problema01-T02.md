@@ -91,6 +91,7 @@ $$\mathcal{I}_{\hat{K}}: V(\hat{K}) \longmapsto \hat{P}$$
 $$
 \mathcal{I_{\text{\hat{K}}}} \hat{v} =\sum_{i=1}^{n_{\mathrm{sh}}} \hat{\sigma_{\text{i}}}(\hat{v}) \hat{\theta_{\text{i}}}
 $$ 
+
 el operador de interpolación de referencia.
 
 
