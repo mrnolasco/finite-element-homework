@@ -6,10 +6,7 @@ $$\int_{\Omega} v(x) dx = \sum_{K\in T_h} \int_{K} v(x) dx$$
 
 Para calcular la integral sobre un elemento $K$, se utiliza un cambio de variable para transformar la integral sobre el triángulo $\hat{K}$, que es un triángulo de referencia, al triángulo $K$. Este cambio de variable implica una transformación afín $T_K$ y una multiplicación por el determinante del Jacobiano de la transformación:
 $$\int_{\Omega} v(x) dx = \sum_{K\in T_h} \int_{K} v(x) dx = \sum_{K\in T_h} \int_{\hat{K}}v\circ T_K(\hat{x}) \left\vert det\left(J_K\right) \right\vert d\hat{x}$$
-donde $$x=T_K\left(\hat{x}\right) $$ 
-y es tal que
-
-$$ K=T_K\left(\hat{K}\right) $$
+donde $$x=T_K\left(\hat{x}\right) $$ y es tal que $$ K=T_K\left(\hat{K}\right) $$
 
 Ahora para aproximar la integral sobre el triángulo de referencia $\hat{K}$, se utiliza una fórmula de cuadratura que involucra un conjunto de puntos de cuadratura y pesos, que dependen del orden de la precisión deseada:
 $$\int_{\hat{K}}v\circ T_K(\hat{x})  d\hat{x} \approx  \sum_{l=1}^{l_q}\omega_l\ v\circ T_K(\hat{\xi}_l)   $$
@@ -43,17 +40,18 @@ Observaciones:
 1. Sea $\hat{K} = \triangle OE_1E_2$ con nodos en $(0,0)$, $(1,0)$, $(0,1)$ y $K=\triangle Z_0Z_1Z_2 \in T_h$ un elemento de la malla. Entonces la transformación $T_K: \hat{K} \rightarrow K$ que lleva los vértices de $\hat{K}$ en los vértices de $K$ está dada por: 
 $$x=T_K(\hat{x}) = J_K \hat{x} + z_0 \quad \hat{x}\in \hat{K} $$
 Con 
-$$J_K : = \left[ z_1-z_0 \  \  \vert \ \ z_2-z_0 \right]$$ y $z_i$ el vector columna con las coordenadas del punto $Z_i$
+$$J_K : = \left[ z_1-z_0 \  \  \vert \ \ z_2-z_0 \right]$$ 
+y $z_i$ el vector columna con las coordenadas del punto $Z_i$
+ y $z_i$ el vector columna con las coordenadas del punto $Z_i$
 
 2. Si $\hat{\xi}_l$, un punto de la cuadratura, tiene coordenadas baricéntricas $(\lambda_0: \lambda_1 :\lambda_2)$, entonces 
 
 Sus coordenadas en el simplejo de referencia $\hat{K}$ son: 
 
-$$ \hat{\xi}_l = \lambda_0 \begin{pmatrix} 0\\\ 0\end{pmatrix} +\lambda_1 \begin{pmatrix}1\\\ 0\end{pmatrix} + \lambda_2 \begin{pmatrix} 0\\\ 1\end{pmatrix} = \begin{pmatrix}\lambda_1\\\ \lambda_2\end{pmatrix} $$ 
-
-y sus coordenadas en el simplejo $K$ son: 
+$$ \hat{\xi}_l = \lambda_0 \begin{pmatrix} 0\\\ 0\end{pmatrix} +\lambda_1 \begin{pmatrix}1\\\ 0\end{pmatrix} + \lambda_2 \begin{pmatrix} 0\\\ 1\end{pmatrix} = \begin{pmatrix}\lambda_1\\\ \lambda_2\end{pmatrix} $$ y sus coordenadas en el simplejo $K$ son: 
 
 $$ T_K(\hat{\xi}_l) = J_K \hat{\xi}_l + z_0   $$
+
 
 * Function: `quadratures_triangle(n::Int)`
 
@@ -195,12 +193,12 @@ end
 
 ## Integral de una función dada una malla y una regla de cuadratura:
 
-* Function: `quadrature_triangle_loc(f::Function, points::Matrix, g_points::Matrix, w_points::Vector)`
+* Function: `quad_tri_loc(f::Function, points::Matrix, w_points::Vector)`
 
 
 ```julia
 """
-## `quadrature_triangle_loc(f::Function, points::Matrix, g_points::Matrix, w_points::Vector)`
+## `quad_tri_loc(f::Function, points::Matrix, w_points::Vector)`
 
 La función `cuadratura_triang_loc` calcula la cuadratura de una función en un triángulo
 definido por los nodos de entrada usando el método de Gauss-Legendre.
@@ -209,15 +207,13 @@ definido por los nodos de entrada usando el método de Gauss-Legendre.
 - `f`: Función a integrar
 - `points`: Matriz de coordenadas globales de nodos de cuadratura.
             Cada columna corresponde a un nodo de cuadratura en el triángulo de la malla.
-- `g_points`: Matriz de coordenadas locales de nodos de cuadratura.
-            Cada columna corresponde a un nodo de cuadratura en el triángulo de referencia.
 - `w_points`: Vector que contiene los pesos correspondientes a los nodos de la cuadratura.
 
 ## Salida
 - `int_loc`: Valor de la integral de `f` en el triángulo.
 
 """
-function quadrature_triangle_loc(f, points, g_points, w_points)
+function quad_tri_loc(f, points, w_points)
 # Evaluación de la función en los puntos de cuadratura
     fval = [f(points[:,i]) for i in 1:size(points,2)]
     
@@ -230,7 +226,7 @@ end
 
 
 
-    quadrature_triangle_loc
+    quad_tri_loc
 
 
 
@@ -281,7 +277,7 @@ function integrate_f_mesh(f::Function, mesh::Dict, n::Int)
         points = Jk * g_points .+ q[:,1]
     
         # Cálculo de la integral local
-        int_loc = quadrature_triangle_loc(f, points, g_points,w_points)*abs(det(Jk))
+        int_loc = quad_tri_loc(f, points, w_points)*abs(det(Jk))
         int_glob += int_loc
     end
     return int_glob
@@ -306,13 +302,13 @@ $$\int_0^1 \int_0^1 x^4 \sin(x) \cos(y) dx dy = -20 \sin^2(1) + 24 \sin(1) - \fr
 
 ```julia
 # Definimos la función
-f(x) = x[1]^4*sin(x[1])* cos(x[2]) 
+f(x) = x[1]^4*sin(x[1])*cos(x[2]) 
 
 # Definimos la malla a utilizar
 meshf = MSH[6]
 
 # Definimos la cuadratura a utilizar
-n_quad = 5;
+n_quad = 2;
 
 # Aproximación de la integral
 cuadf = integrate_f_mesh(f, meshf, n_quad)
@@ -321,7 +317,7 @@ cuadf = integrate_f_mesh(f, meshf, n_quad)
 
 
 
-    0.12340199569053976
+    0.12340199540629104
 
 
 
@@ -347,5 +343,4 @@ abs(cuadf-intf)
 
 
 
-    1.3937971610200606e-10
-
+    1.4486900568044803e-10
