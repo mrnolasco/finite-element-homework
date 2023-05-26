@@ -74,33 +74,7 @@ $$\theta = \begin{cases}  \lambda_i \left( 2\lambda_i-1 \right) & \quad 0\leq i 
     $$\theta_i = d\left(\frac{1}{d}- \lambda_i \right), \quad 0\leq i \leq d$$
 
 
-Como el siguiente diagrama conmuta:
-
-$$
-\begin{array}{cc}
-V(K) \stackrel{\psi_K}{\longrightarrow} V(\hat{K}) \quad \\\
-\downarrow{\mathcal{I}_K} \quad  \quad \quad \downarrow \mathcal{I}_{\hat{K}} \\\
-P_K\quad \stackrel{\psi_K}{\longrightarrow}\quad \hat{P} \quad
-\end{array}
-$$
-
-con 
-
-$$\mathcal{I}_{\hat{K}}: V(\hat{K}) \longmapsto \hat{P}$$ 
-
-\begin{align*}
-\mathcal{I_{\text{\hat{K}}}} \hat{v} =\sum_{i=1}^{n_{\mathrm{sh}}} \hat{\sigma_{i}}(\hat{v}) \hat{\theta_{i}}
-\end{align*} 
-
-el operador de interpolación de referencia.
-
-
-Entonces podemos expresar el interpolador local en términos del elemento finito de referencia:
-
-$$ \mathcal{I}_K v(x) = \sum_{i=1}^{n_{sh}} \sigma_{K,i}(v)\ \theta_{K,i}(x)=  \sum_{i=1}^{n_{sh}}  \sigma_{K,i}(v)\ \psi_K^{-1}\left(\hat{\theta}_i\right)\left(x\right) =\sum_{i=1}^{n_{sh}} \sigma_{K,i}(v)\ \left(\hat{\theta}_i\circ T_K^{-1}\right)(x)$$
-
-
-Para nuestro problema $d=2$, tenemos
+Las funciones de forma, para nuestro problema $d=2$, tenemos
 
 - Elementos finitos de Lagrange de primer orden
 
