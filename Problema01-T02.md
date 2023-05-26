@@ -141,6 +141,7 @@ end
 ## El Interpolador global
 
 Usando la familia de elementos finitos $\left\lbrace K, P_K, \Sigma_K \right\rbrace_{K \in \mathcal{T}_h}$, se puede construir un operador de interpolación global $\mathcal{I}_h$ de la siguiente manera: primero, se elige su dominio como
+
 $$
 D\left(\mathcal{I}_h\right)=\left\{v \in\left[L^1\left(\Omega_h\right)\right]^m ; \forall K \in \mathcal{T}_h, v_{\mid K} \in V(K)\right\}
 $$
