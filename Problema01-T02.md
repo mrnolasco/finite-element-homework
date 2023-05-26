@@ -155,7 +155,11 @@ $$
 $$
 
 $$
-\sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} 
+\sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} 
+$$
+
+$$
+\sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} 
 $$
 
 donde $W_h$, el codominio de $\mathcal{I}_h$, es
