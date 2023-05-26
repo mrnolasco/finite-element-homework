@@ -140,19 +140,8 @@ end
 
 ## El Interpolador global
 
-Usando la familia de elementos finitos $\left\lbrace K, P_K, \Sigma_K \right\rbrace_{K \in \mathcal{T}_h}$, se puede construir un operador de interpolación global $\mathcal{I}_h$ de la siguiente manera: primero, se elige su dominio como
-
-$$
-D\left(\mathcal{I}_h\right)=\left\{v \in\left[L^1\left(\Omega_h\right)\right]^m ; \forall K \in \mathcal{T}_h, v_{\mid K} \in V(K)\right\}
-$$
-
-donde $\Omega_h$ es la interpolación geométrica de $\Omega$. Para una función $v \in D\left(\mathcal{I}h\right)$, las cantidades $\sigma_{K, i}\left(v_{\mid K}\right)$ tienen sentido en todos los elementos de la malla y para todo $1 \leq i \leq n_{\text {sh }}$. Luego, el interpolante global $\mathcal{I}_h v$ se puede especificar elemento por elemento utilizando los operadores de interpolación local, es decir,
-
-$$
-\forall K \in \mathcal{T}_h, \quad\left(\mathcal{I}_h v\right)_{\mid K}=\mathcal{I}_K\left(v_{\mid K}\right)=\sum_{i=1}^{n_{\text {sh }}} \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i}
-$$
-
 El operador de interpolación global se define de la siguiente manera:
+
 $$
 \mathcal{I}_h: D\left(\mathcal{I}_h\right)  \longmapsto W_h,
 $$
