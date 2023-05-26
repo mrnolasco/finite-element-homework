@@ -149,6 +149,7 @@ $$
 $$
 \mathcal{I}_h (v) := \sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} 
 $$
+
 donde $W_h$, el codominio de $\mathcal{I}_h$, es
 $$
 W_h=\left\{v_h \in\left[L^1\left(\Omega_h\right)\right]^m ; \forall K \in \mathcal{T}_h, v_{\mid K} \in P_K\right\}
