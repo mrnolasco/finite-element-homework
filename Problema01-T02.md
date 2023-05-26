@@ -155,7 +155,11 @@ $$
 $$
 
 $$
-\sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} 
+\sum_{K \in \mathcal{T}_h} 
+$$
+
+$$
+\sum_{i=1}^{n_{\mathrm{ah}}} 
 $$
 
 $$
