@@ -149,6 +149,14 @@ $$
 $$
 \mathcal{I}_h (v) := \sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} 
 $$
+\begin{align*}
+\mathcal{I}_h (v) := \sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} 
+\end{align*}
+
+\begin{equation*}
+\mathcal{I}_h (v) := \sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} 
+\end{equation}
+
 
 $$
 \mathcal{I}_h (v) := 
