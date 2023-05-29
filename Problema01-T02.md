@@ -203,37 +203,7 @@ end
 
 ## Error en $H^1$ del Interpolador local
 
-Para el error del interpolador local en $H^1$ tenemos:
 
-$$\Vert  \nabla \mathcal{I}_h v-\nabla v\Vert_{L^2}^2 = \sum_{K \in \mathcal{T}_h} \int_{K} \left( \nabla \mathcal{I}_h v\vert_{K}-\nabla v\vert_{K}\right)^2(x) dK = \sum_{K \in \mathcal{T}_h} \int_{\hat{K}} \left|\operatorname{det}\left(J_K\right)\right| \left( \nabla  \mathcal{I}_K v-\nabla v\vert_{K}\right)^2\circ T_K(\hat{x}) d\hat{K} $$ 
-
-$$\therefore \Vert \mathcal{I}_h v-v\Vert_{L^2}^2 \approx \sum_{K \in \mathcal{T}_h}\left|\operatorname{det}\left(J_K\right)\right| \sum_{l=1}^{l_q} \omega_l\left[\left( \nabla \mathcal{I}_K v-\nabla v\right)^2 \circ T_K\right]\left(\hat{\xi}_l\right)$$
-
-
-
-Ya que $$ \mathcal{I}_K v(x) = \sum_{i=1}^{n_{sh}} \sigma_{K,i}(v)\ \theta_{K,i}(x)=  \sum_{i=1}^{n_{sh}}  \sigma_{K,i}(v)\ \psi_K^{-1}\left(\hat{\theta}_i\right)\left(x\right) =\sum_{i=1}^{n_{sh}} \sigma_{K,i}(v)\ \left(\hat{\theta}_i\circ T_K^{-1}\right)(x)$$
-
-Entonces podemos obtener el gradiente como sigue:
-$$\nabla_x \mathcal{I}_K v(x)  =\sum_{i=1}^{n_{sh}} \sigma_{K,i}(v)\nabla_x  \left(\hat{\theta}_i\circ T_k^{-1}\right)(x) =\sum_{i=1}^{n_{sh}} \sigma_{K,i}(v) \nabla_\hat{x} \hat{\theta}_i  (\hat{x}) \frac{\partial T_k^{-1}(x)}{\partial x}  =\sum_{i=1}^{n_{sh}} \sigma_{K,i}(v)  \nabla_\hat{x} \hat{\theta}_i (\hat{x}) \frac{\partial \hat{x} }{\partial x}$$
-$$ \therefore \nabla_x \mathcal{I}_K v(x) =  \sum_{i=1}^{n_{sh}} \sigma_{K,i}(v) \nabla_\hat{x} \hat{\theta}_i  (\hat{x})J_K^{-1}  $$
-
-Que en notación vectorial podemos escribir como
-$$\nabla_x \mathcal{I}_K v(x) = \sigma_K^t(v) \cdot D_\hat{x} \theta (\hat{x})\cdot J_K^{-1}$$
-
-Para nuestro problema $d=2$, tenemos
-
-- Elementos finitos de Lagrange de primer orden
-$$\theta = \begin{pmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \end{pmatrix}= \begin{pmatrix} \lambda_0 \\ \lambda_1 \\ \lambda_2 \end{pmatrix} = \begin{pmatrix} 1-\hat{x}_1-\hat{x}_2 \\ \hat{x}_1\\ \hat{x}_2 \end{pmatrix} \implies D_\hat{x}\theta = \begin{pmatrix}-1 & -1 \\ \ 1&\ 0 \\ \ 0&\ 1\end{pmatrix} $$
-- Elementos finitos de Crouzeix–Raviart de primer orden
-$$\theta = \begin{pmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \end{pmatrix}= \begin{pmatrix} 1-2\lambda_0 \\ 1-2\lambda_1 \\ 1-2\lambda_2 \end{pmatrix}\implies D_\hat{x}\theta = \begin{pmatrix}\ \ 2 & \ 2 \\ -2 &\ 0 \\ \ \ 0&-2 \end{pmatrix}   $$
-- Elementos finitos de Lagrange de segundo orden
-$$\theta = \begin{pmatrix} \theta_0 \\ \theta_1 \\ \theta_2 \\ \theta_3 \\ \theta_4 \\ \theta_5 \end{pmatrix}= \begin{pmatrix} \lambda_0(2\lambda_0-1) \\ \lambda_1(2\lambda_1-1)\\ \lambda_2(2\lambda_2-1) \\ 4\lambda_0\lambda_1 \\ 4\lambda_1\lambda_2 \\ 4\lambda_0\lambda_2 \end{pmatrix}\implies D_\hat{x}\theta =D_{\lambda}  \theta\cdot D_{\hat{x}} \lambda = \begin{pmatrix}
-1-4\lambda_0&1-4\lambda_0\\
-4\lambda_1-1&0\\
-0 &4\lambda_2-1\\
-4(\lambda_0-\lambda_1)&-4\lambda_1\\
-4\lambda_2 &4\lambda_1\\
--4\lambda_2 &4(\lambda_0-\lambda_2)   \end{pmatrix}  $$
 
 * Function: `get_Dθ_functions(ξ::Vector, ef::Int)`
 
