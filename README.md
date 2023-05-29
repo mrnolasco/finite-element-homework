@@ -9,5 +9,5 @@ Repositorio con Práctica y Aplicaciones de los Elementos Finitos
     * [Funciones para mallas](funciones-para-mallas.md)
     * [Funciones para cuadratura en una malla de triángulos](funciones-cuadratura-mallas.md)
  * [Interpolador](Interpolador-T02.md)
- * [Problema 2](Problema02-T02.md)
+ * [Solución EDP](EDP-T02.md)
  * [Problema 3](Problema03-T02.md)
