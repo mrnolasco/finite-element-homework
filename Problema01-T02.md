@@ -137,46 +137,6 @@ end
     get_θ_functions
 
 
-
-## El Interpolador global
-
-El operador de interpolación global se define de la siguiente manera:
-
-$$
-\mathcal{I}_h: D\left(\mathcal{I}_h\right)  \longmapsto W_h,
-$$
-
-$$
-\mathcal{I}_h (v) := \sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} 
-$$
-
-$$\mathcal{I}_h (v) := $$
-
-$$\sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} $$
-
-$$ \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} $$
-
-\begin{equation*}
-\mathcal{I}_h (v) := \ \ \sum_{K \in \mathcal{T}_h} \sum_{i=1}^{n_{\mathrm{ah}}} \ \ \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} 
-\end{equation*}
-
-
-$$
-\mathcal{I}_h (v) := 
-$$
-
-$$
-\sum_{K \in \mathcal{T}_h}  \ \sum_{i=1}^{n_{\mathrm{ah}}}  \ \sigma_{K, i}\left(v_{\mid K}\right) \theta_{K, i} 
-$$
-
-donde $W_h$, el codominio de $\mathcal{I}_h$, es
-
-$$
-W_h=\left\{v_h \in\left[L^1\left(\Omega_h\right)\right]^m ; \forall K \in \mathcal{T}_h, v_{\mid K} \in P_K\right\}
-$$
-
-El espacio $W_h$ se llama espacio de aproximación.
-
 ## Error en $L^2$ del Interpolador global
 
 Para el error del interpolador global en $L^2$ tenemos:
