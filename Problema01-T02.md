@@ -139,11 +139,7 @@ end
 
 ## Error en $L^2$ del Interpolador global
 
-Para el error del interpolador global en $L^2$ tenemos:
 
-$$\Vert \mathcal{I}_h v-v\Vert_{L^2}^2 = \sum_{K \in \mathcal{T}_h} \int_{K} \left( \mathcal{I}_h v\vert_{K}-v\vert_{K}\right)^2(x) dK = \sum_{K \in \mathcal{T}_h} \int_{\hat{K}} \left|\operatorname{det}\left(J_K\right)\right| \left( \mathcal{I}_K v-v\vert_{K}\right)^2\circ T_K(\hat{x}) d\hat{K} $$ 
-
-$$\therefore \Vert \mathcal{I}_h v-v\Vert_{L^2}^2 \approx \sum_{K \in \mathcal{T}_h}\left|\operatorname{det}\left(J_K\right)\right| \sum_{l=1}^{l_q} \omega_l\left[\left( \mathcal{I}_K v-v\right)^2 \circ T_K\right]\left(\hat{\xi}_l\right)$$
 
 * Function: `error_local_L2(v::Function, σ_T::Array, X::Array, ξ::Array, ω::Array, ef::Int)`
 
