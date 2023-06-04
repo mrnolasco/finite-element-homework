@@ -79,9 +79,9 @@ $$
 
 * $$ \left(f, \theta_{k, i}\right)=\int_{\Omega}\left(f  \theta_{k, i}\right)(x) dx =\sum_{K \in \mathcal{T}_h} \int_{K} \left( f \theta_{k, i}\right)(x) dK = \sum_{K \in \mathcal{T}_h} \int_{\hat{K}} \left|\operatorname{det}\left(J_K\right)\right| \left( f \theta_{k, i}\right)\circ T_K(\hat{x}) d\hat{K} $$ 
 
-\begin{equation*}
+\begin{equation}
 \therefore \left(f, \theta_{k, i}\right) \approx \sum_{K \in \mathcal{T}_h}\left|\operatorname{det}\left(J_K\right)\right| \sum_{l=1}^{l_q} \omega_l\left[\left(f \theta_{k, i} \right) \circ T_K\right]\left(\hat{\xi}_l\right)
-\end{equation*}
+\end{equation}
 
 ```julia
 κ(x) = 1+x[1]^2
