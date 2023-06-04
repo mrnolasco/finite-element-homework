@@ -10,8 +10,10 @@ $$
 
 
 donde
+
 $$
-f(x)=8 \pi \sin \left(4 \pi x_2\right)\left(4 \pi x_1^2 \sin \left(4 \pi x_1\right)+4 \pi \sin \left(4 \pi x_1\right)-x_1 \cos \left(4 \pi x_1\right)\right), \quad k(x)=1+x_1^2$$
+f(x)=8 \pi \sin \left(4 \pi x_2\right)\left(4 \pi x_1^2 \sin \left(4 \pi x_1\right)+4 \pi \sin \left(4 \pi x_1\right)-x_1 \cos \left(4 \pi x_1\right)\right), \quad k(x)=1+x_1^2
+$$
 
 * Verificar que $u(x)=\sin \left(4 \pi x_1\right) \sin \left(4 \pi x_2\right)$ es la solución del problema. 
 
