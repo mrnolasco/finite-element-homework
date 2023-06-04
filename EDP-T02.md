@@ -65,9 +65,13 @@ Por lo tanto, la solución numérica del problema se obtiene resolviendo el sist
 
 En términos del simplejo de referencia tenemos:
 
-* $$ a\left(\theta_{k, i}, \theta_{k, j}\right)=\int_{\Omega}\left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right)(x) dx =\sum_{K \in \mathcal{T}_h} \int_{K} \left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right)(x) dK = \sum_{K \in \mathcal{T}_h} \int_{\hat{K}} \left|\operatorname{det}\left(J_K\right)\right| \left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right)\circ T_K(\hat{x}) d\hat{K} $$ 
+* $$ 
+a\left(\theta_{k, i}, \theta_{k, j}\right)=\int_{\Omega}\left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right)(x) dx =\sum_{K \in \mathcal{T}_h} \int_{K} \left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right)(x) dK = \sum_{K \in \mathcal{T}_h} \int_{\hat{K}} \left|\operatorname{det}\left(J_K\right)\right| \left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right)\circ T_K(\hat{x}) d\hat{K} 
+$$ 
 
-$$\therefore a\left(\theta_{k, i}, \theta_{k, j}\right) \approx \sum_{K \in \mathcal{T}_h}\left|\operatorname{det}\left(J_K\right)\right| \sum_{l=1}^{l_q} \omega_l\left[\left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right) \circ T_K\right]\left(\hat{\xi}_l\right)$$
+$$
+\therefore a\left(\theta_{k, i}, \theta_{k, j}\right) \approx \sum_{K \in \mathcal{T}_h}\left|\operatorname{det}\left(J_K\right)\right| \sum_{l=1}^{l_q} \omega_l\left[\left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right) \circ T_K\right]\left(\hat{\xi}_l\right)
+$$
 
 
 
