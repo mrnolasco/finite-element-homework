@@ -28,6 +28,7 @@ $$
 $$
 
 Integrando por partes en el dominio $\Omega$:
+
 $$
 \begin{array}{c}
 \int_{\Omega} \nabla \cdot(\kappa(x) \nabla u) v(x) \mathrm{d} x=\int_{\Omega} f(x) v(x) \mathrm{d} x \\
