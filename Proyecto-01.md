@@ -7,6 +7,7 @@ Aproximar numéricamente utilizando los elementos finitos de:
 * Lagrange de segundo orden 
 
 la solución débil del siguiente problema con valores en la frontera:
+
 $$
 \begin{aligned}
 -\nabla \cdot(k(x) \nabla u) & =f(x) & & \text { en } \Omega:=(0,1) \times(0,1), \\
@@ -16,8 +17,10 @@ $$
 
 
 donde
+
 $$
-f(x)=8 \pi \sin \left(4 \pi x_2\right)\left(4 \pi x_1^2 \sin \left(4 \pi x_1\right)+4 \pi \sin \left(4 \pi x_1\right)-x_1 \cos \left(4 \pi x_1\right)\right), \quad k(x)=1+x_1^2$$
+f(x)=8 \pi \sin \left(4 \pi x_2\right)\left(4 \pi x_1^2 \sin \left(4 \pi x_1\right)+4 \pi \sin \left(4 \pi x_1\right)-x_1 \cos \left(4 \pi x_1\right)\right), \quad k(x)=1+x_1^2
+$$
 
 
 * Obtener entonces la tasa de convergencia para el error $e:=u_h-u$ en las normas $L^2(\Omega)$ y la seminorma $H^1(\Omega)$ para la familia de mallas proporcionada en la página del curso.
