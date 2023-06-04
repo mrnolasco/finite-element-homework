@@ -1,5 +1,6 @@
 # Solución numéricamente de una Ecuación Diferencial Parcial
 Aproximar numéricamente utilizando los elementos finitos de Lagrange de primer orden la solución débil del siguiente problema con valores en la frontera:
+
 $$
 \begin{aligned}
 -\nabla \cdot(k(x) \nabla u) & =f(x) & & \text { en } \Omega:=(0,1) \times(0,1), \\
