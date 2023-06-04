@@ -57,7 +57,9 @@ donde $n_{\text{nods}}$ es el número total de nodos en la malla y $u_i$ y $v_j$
 
 Sustituimos las aproximaciones de la solución y la función de prueba en la ecuación integral y reordenamos los términos para obtener una forma matricial del problema:
 
-$$\sum_{j=1}^{n_{\text {nods }}}\left[\int_{\Omega} \kappa(x) \nabla \phi_i(x) \cdot \nabla \phi_j(x) \mathrm{d} x\right] u_j=\int_{\Omega} f(x) \phi_i(x) \mathrm{d} x \quad \operatorname{para} i=1, \ldots, {n_{\text {nods }}}$$
+\begin{align*}
+\sum_{j=1}^{n_{\text {nods }}}\left[\int_{\Omega} \kappa(x) \nabla \phi_i(x) \cdot \nabla \phi_j(x) \mathrm{d} x\right] u_j=\int_{\Omega} f(x) \phi_i(x) \mathrm{d} x \quad \operatorname{para} i=1, \ldots, {n_{\text {nods }}}
+\end{align*}
 
 donde $A_{i,j} := \int_{\Omega} \kappa(x) \nabla \phi_{i}(x) \cdot \nabla \phi_{j}(x) \mathrm{d} x$ es la matriz de rigidez y $b_i := \int_{\Omega} f(x) \phi_{i}(x) \mathrm{d} x$ es el vector de carga.
 
