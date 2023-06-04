@@ -37,6 +37,7 @@ $$
 $$
 
 Aplicando la condición de frontera homogénea $u=0$ en $\partial \Omega$:
+
 $$
 \int_{\Omega} \kappa(x) \nabla u \cdot \nabla v(x) \mathrm{d} x=\int_{\Omega} f(x) v(x) \mathrm{d} x
 $$
@@ -47,6 +48,7 @@ $$
 Para aproximar numéricamente la solución débil del problema, primero dividimos el dominio $\Omega$ en una malla de elementos triangulares con nodos en los vértices. 
 
 Aproximar la solución y la función de prueba como combinaciones lineales de las funciones de forma de Lagrange de primer orden:
+
 $$
 u(x) \approx u_h =\sum_{i=1}^{n_{\text {nods }}} u_i \phi_i(x) \quad \text { y } \quad v(x) \approx \sum_{j=1}^{n_{\text {nods }}} v_j \phi_j(x)
 $$
