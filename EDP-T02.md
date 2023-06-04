@@ -45,43 +45,6 @@ $$
 
 ## Aproximación numérica de la solución
 
-Para aproximar numéricamente la solución débil del problema, primero dividimos el dominio $\Omega$ en una malla de elementos triangulares con nodos en los vértices. 
-
-Aproximar la solución y la función de prueba como combinaciones lineales de las funciones de forma de Lagrange de primer orden:
-
-$$
-u(x) \approx u_h =\sum_{i=1}^{n_{\text {nods }}} u_i \phi_i(x) \quad \text { y } \quad v(x) \approx \sum_{j=1}^{n_{\text {nods }}} v_j \phi_j(x)
-$$
-
-donde $n_{\text{nods}}$ es el número total de nodos en la malla y $u_i$ y $v_j$ son los coeficientes desconocidos asociados a las funciones de forma $\phi_i(x)$ y $\phi_j(x)$, respectivamente.
-
-Sustituimos las aproximaciones de la solución y la función de prueba en la ecuación integral y reordenamos los términos para obtener una forma matricial del problema:
-
-\begin{align*}
-\sum_{j=1}^{n_{\text {nods }}}\left[\int_{\Omega} \kappa(x) \nabla \phi_i(x) \cdot \nabla \phi_j(x) \mathrm{d} x\right] u_j=\int_{\Omega} f(x) \phi_i(x) \mathrm{d} x \quad \operatorname{para} i=1, \ldots, {n_{\text {nods }}}
-\end{align*}
-
-donde $A_{i,j} := \int_{\Omega} \kappa(x) \nabla \phi_{i}(x) \cdot \nabla \phi_{j}(x) \mathrm{d} x$ es la matriz de rigidez y $b_i := \int_{\Omega} f(x) \phi_{i}(x) \mathrm{d} x$ es el vector de carga.
-
-Por lo tanto, la solución numérica del problema se obtiene resolviendo el sistema lineal $A\mathbf{u} = \mathbf{b}$, donde $\mathbf{u}$ es el vector de coeficientes nodales de la aproximación de la solución $u(x)$ y $\mathbf{b}$ es el vector de carga.
-
-En términos del simplejo de referencia tenemos:
-
-* $$ 
-a\left(\theta_{k, i}, \theta_{k, j}\right)=\int_{\Omega}\left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right)(x) dx =\sum_{K \in \mathcal{T}_h} \int_{K} \left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right)(x) dK = \sum_{K \in \mathcal{T}_h} \int_{\hat{K}} \left|\operatorname{det}\left(J_K\right)\right| \left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right)\circ T_K(\hat{x}) d\hat{K} 
-$$ 
-
-$$
-\therefore a\left(\theta_{k, i}, \theta_{k, j}\right) \approx \sum_{K \in \mathcal{T}_h}\left|\operatorname{det}\left(J_K\right)\right| \sum_{l=1}^{l_q} \omega_l\left[\left( \kappa \nabla \theta_{K, i} \cdot \nabla  \theta_{k, j}\right) \circ T_K\right]\left(\hat{\xi}_l\right)
-$$
-
-
-
-* $$ \left(f, \theta_{k, i}\right)=\int_{\Omega}\left(f  \theta_{k, i}\right)(x) dx =\sum_{K \in \mathcal{T}_h} \int_{K} \left( f \theta_{k, i}\right)(x) dK = \sum_{K \in \mathcal{T}_h} \int_{\hat{K}} \left|\operatorname{det}\left(J_K\right)\right| \left( f \theta_{k, i}\right)\circ T_K(\hat{x}) d\hat{K} $$ 
-
-$$
-\therefore \left(f, \theta_{k, i}\right) \approx \sum_{K \in \mathcal{T}_h}\left|\operatorname{det}\left(J_K\right)\right| \sum_{l=1}^{l_q} \omega_l\left[\left(f \theta_{k, i} \right) \circ T_K\right]\left(\hat{\xi}_l\right)
-$$
 
 ```julia
 κ(x) = 1+x[1]^2
