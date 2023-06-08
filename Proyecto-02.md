@@ -1,3 +1,11 @@
+# Teoría, Práctica y Aplicaciones de los Elementos Finitos
+## Proyecto Final
+### Curso de Posgrado en Matemáticas-UNAM
+
+> Profesor: Daniel Castañon Quiroz. daniel.castanon@iimas.unam.mx
+
+> Alumno: Mario Rafael Nolasco Estrada. mnolasco@ciencias.unam.mx
+
 # Ejercicio Allen-Chan
 
 Aproximar numéricamente utilizando los elementos finitos de Lagrange de primer
