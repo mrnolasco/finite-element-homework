@@ -2,17 +2,23 @@
 
 Aproximar numéricamente utilizando los elementos finitos de Lagrange de primer
 orden la solucion débil del problema estacionario de Allen-Chan con valores en la frontera:
-$$\begin{cases} - \Delta u -u+u^3=f(x) & \text{ en } \Omega:= (0,1)\times (0,1)\\ u=0 & \text{ en } \partial \Omega  \end{cases} $$
+$$
+\begin{cases} - \Delta u -u+u^3=f(x) & \text{ en } \Omega:= (0,1)\times (0,1)\\ u=0 & \text{ en } \partial \Omega  \end{cases} 
+$$
+
 Usando $u(x)= \sin\left(4\pi x_1\right) \sin\left(4\pi x_2\right) $ como solución, entonces calcular $f(x)$.
 
-$$\begin{array}{l}\frac{\partial u}{\partial x_1}=4 \pi \cos \left(4 \pi x_1\right) \sin \left(4 \pi x_2\right), \\ \frac{\partial u}{\partial x_2}=4 \pi \sin \left(4 \pi x_1\right) \cos \left(4 \pi x_2\right) .\end{array}$$
+$$
+\begin{array}{l}\frac{\partial u}{\partial x_1}=4 \pi \cos \left(4 \pi x_1\right) \sin \left(4 \pi x_2\right), \\ \frac{\partial u}{\partial x_2}=4 \pi \sin \left(4 \pi x_1\right) \cos \left(4 \pi x_2\right) .\end{array}
+$$
 
-$$\begin{array}{l}\frac{\partial^2 u}{\partial x_1^2}=-(4 \pi)^2 \sin \left(4 \pi x_1\right) \sin \left(4 \pi x_2\right) \\ \frac{\partial^2 u}{\partial x_2^2}=-(4 \pi)^2 \sin \left(4 \pi x_1\right) \sin \left(4 \pi x_2\right)\end{array}$$
+$$
+\begin{array}{l}\frac{\partial^2 u}{\partial x_1^2}=-(4 \pi)^2 \sin \left(4 \pi x_1\right) \sin \left(4 \pi x_2\right) \\ \frac{\partial^2 u}{\partial x_2^2}=-(4 \pi)^2 \sin \left(4 \pi x_1\right) \sin \left(4 \pi x_2\right)\end{array}
+$$
 
-\begin{align*}
-f(x) & = - \Delta u -u+u^3  = 2(4 \pi)^2u-u+u^3 = u\left( 2(4 \pi)^2-1 + u^2\right)\\
-& = \sin\left(4\pi x_1\right) \sin\left(4\pi x_2\right) \left( 2(4 \pi)^2-1 + \sin^2\left(4\pi x_1\right) \sin^2\left(4\pi x_2\right) \right)
-\end{align*}
+$$
+f(x) = \sin\left(4\pi x_1\right) \sin\left(4\pi x_2\right) \left( 2(4 \pi)^2-1 + \sin^2\left(4\pi x_1\right) \sin^2\left(4\pi x_2\right) \right)
+$$
 
 
 Observar que el problema es una EDP no lineal, por lo tanto se tendrá que resolver un
