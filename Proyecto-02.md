@@ -11,7 +11,11 @@ $$
 
 Usando 
 
-$u(x)= \sin\left(4\pi x_1\right) \sin\left(4\pi x_2\right) $ como solución, entonces calcular $f(x)$.
+$$
+u(x)= \sin\left(4\pi x_1\right) \sin\left(4\pi x_2\right)
+$$
+
+como solución, entonces calcular $f(x)$.
 
 $$
 \begin{array}{l}\frac{\partial u}{\partial x_1}=4 \pi \cos \left(4 \pi x_1\right) \sin \left(4 \pi x_2\right), \\ \frac{\partial u}{\partial x_2}=4 \pi \sin \left(4 \pi x_1\right) \cos \left(4 \pi x_2\right) .\end{array}
