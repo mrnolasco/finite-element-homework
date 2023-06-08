@@ -13,8 +13,13 @@ Repositorio con Práctica y Aplicaciones de los Elementos Finitos
 
 # Tarea 01
  * [Problema 1](Problema01.md)
+   * [Notebook](Problema%201.ipynb)
  * [Problema 2](Problema02.md)
+   * [Notebook](Problema%202.ipynb)
  * [Problema 3](Problema03.md)
+   * [Notebook](Problema%203.ipynb)
+
+
 # Tarea 02
  * Funciones
     * [Funciones para mallas](funciones-para-mallas.md)
@@ -24,4 +29,5 @@ Repositorio con Práctica y Aplicaciones de los Elementos Finitos
  # Proyecto Final
  * [Problema 1 y 2](Proyecto-01.md)
  * [Problema 3](Proyecto-02.md)
+ # Notebooks
  * [Ver Notebook](C%C3%B3digos%20en%20Notebook%20-%20Elementos%20Finitos.ipynb)
