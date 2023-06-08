@@ -1,3 +1,11 @@
+# Teoría, Práctica y Aplicaciones de los Elementos Finitos
+## Tarea II
+### Curso de Posgrado en Matemáticas-UNAM
+
+> Profesor: Daniel Castañon Quiroz. daniel.castanon@iimas.unam.mx
+
+> Alumno: Mario Rafael Nolasco Estrada. mnolasco@ciencias.unam.mx
+
 # Funciones de cuadratura en una malla de triángulos
 
 La integral de una función escalar $v:\mathbb{R}^2 \rightarrow  \mathbb{R}$ sobre una región mallada $\Omega\subset \mathbb{R}^2 $, se puede calcular mediante la suma de integrales sobre cada elemento $K$ de una malla $T_h$:
