@@ -1,5 +1,16 @@
 # finite-element-homework
 Repositorio con Práctica y Aplicaciones de los Elementos Finitos
+
+
+# Teoría, Práctica y Aplicaciones de los Elementos Finitos
+### Curso de Posgrado en Matemáticas-UNAM
+
+> Profesor: Daniel Castañon Quiroz. daniel.castanon@iimas.unam.mx
+
+> Alumno: Mario Rafael Nolasco Estrada. mnolasco@ciencias.unam.mx
+
+
+
 # Tarea 01
  * [Problema 1](Problema01.md)
  * [Problema 2](Problema02.md)
