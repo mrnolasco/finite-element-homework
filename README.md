@@ -11,4 +11,5 @@ Repositorio con Práctica y Aplicaciones de los Elementos Finitos
  * [Interpolador](Interpolador-T02.md)
  * [Solución EDP](EDP-T02.md)
  # Proyecto Final
- * [Problema 1](Proyecto-01.md)
+ * [Problema 1 y 2](Proyecto-01.md)
+ * [Problema 3](Proyecto-02.md)
