@@ -1,3 +1,11 @@
+# Teoría, Práctica y Aplicaciones de los Elementos Finitos
+## Tarea II
+### Curso de Posgrado en Matemáticas-UNAM
+
+> Profesor: Daniel Castañon Quiroz. daniel.castanon@iimas.unam.mx
+
+> Alumno: Mario Rafael Nolasco Estrada. mnolasco@ciencias.unam.mx
+
 # Problema 1
 
 Obtener el interpolador $v_I(x)$ de la funcion 
