@@ -3,7 +3,7 @@
 Aproximar numéricamente utilizando los elementos finitos de Lagrange de primer
 orden la solucion débil del problema estacionario de Allen-Chan con valores en la frontera:
 $$
-\begin{cases} - \Delta u -u+u^3=f(x) & \text{ en } \Omega:= (0,1)\times (0,1)\\ u=0 & \text{ en } \partial \Omega  \end{cases} 
+\begin{cases} - \Delta u -u+u^3=f(x) & \text{ en } \Omega:= (0,1)\times (0,1)\\\ u=0 & \text{ en } \partial \Omega  \end{cases} 
 $$
 
 Usando $u(x)= \sin\left(4\pi x_1\right) \sin\left(4\pi x_2\right) $ como solución, entonces calcular $f(x)$.
