@@ -24,3 +24,5 @@ Repositorio con Práctica y Aplicaciones de los Elementos Finitos
  # Proyecto Final
  * [Problema 1 y 2](Proyecto-01.md)
  * [Problema 3](Proyecto-02.md)
+ # Notebook
+ * [Ver Notebook](C%C3%B3digos%20en%20Notebook%20-%20Elementos%20Finitos.ipynb)
