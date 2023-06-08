@@ -1,3 +1,11 @@
+# Teoría, Práctica y Aplicaciones de los Elementos Finitos
+## Tarea II
+### Curso de Posgrado en Matemáticas-UNAM
+
+> Profesor: Daniel Castañon Quiroz. daniel.castanon@iimas.unam.mx
+
+> Alumno: Mario Rafael Nolasco Estrada. mnolasco@ciencias.unam.mx
+
 # Solución numéricamente de una Ecuación Diferencial Parcial
 Aproximar numéricamente utilizando los elementos finitos de Lagrange de primer orden la solución débil del siguiente problema con valores en la frontera:
 
